@@ -1,0 +1,372 @@
+/* Palette: UCLA Anderson (blue + white, no gold) crossed with Mammoth Mountain (alpine, snow, ice). */
+:root {
+  --snow: #ffffff;
+  --ice: #eaf3fa;
+  --ice-border: #cfe1ef;
+  --ucla-blue: #2774ae;
+  --deep-blue: #003b5c; /* darker UCLA blue, reads as alpine night sky */
+  --text: #0f2233;
+  --muted: #566a7c;
+  /* mammothmountain.com uses Trade Gothic Next (body) and Trade Gothic Next Condensed (headings).
+     Those are licensed, so Barlow and Barlow Condensed are the closest free match. */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  /* Echoes Mammoth's "GO MAMMOTH" wordmark: very heavy, wide, softly rounded corners. */
+  --font-wordmark: 'Rubik', 'Arial Black', sans-serif;
+  /* Echoes their tightly set serif taglines ("If you know, you go."). */
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  background: var(--snow);
+  color: var(--text);
+}
+
+a { color: var(--ucla-blue); }
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding:12px 32px 0px 32px;
+  background: var(--snow);
+  /* soft shadow follows the cloud outline, including the bumps below */
+  filter: drop-shadow(0 3px 3px rgba(0, 59, 92, 0.25)) drop-shadow(0 8px 10px rgba(0, 59, 92, 0.3));
+}
+/* Cloud underside: wide, flat overlapping puffs (an SVG union of ellipses), like a painted cloud */
+.nav::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 1px);
+  height: 48px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 48'><rect width='700' height='6' fill='%23fff'/><ellipse cx='0' cy='2' rx='52' ry='29' fill='%23fff'/><ellipse cx='47' cy='4' rx='39' ry='28' fill='%23fff'/><ellipse cx='100' cy='8' rx='40' ry='16' fill='%23fff'/><ellipse cx='148' cy='6' rx='37' ry='33' fill='%23fff'/><ellipse cx='201' cy='2' rx='50' ry='34' fill='%23fff'/><ellipse cx='255' cy='1' rx='36' ry='30' fill='%23fff'/><ellipse cx='307' cy='3' rx='37' ry='15' fill='%23fff'/><ellipse cx='354' cy='0' rx='43' ry='33' fill='%23fff'/><ellipse cx='401' cy='7' rx='50' ry='24' fill='%23fff'/><ellipse cx='449' cy='3' rx='42' ry='30' fill='%23fff'/><ellipse cx='502' cy='0' rx='45' ry='29' fill='%23fff'/><ellipse cx='551' cy='4' rx='38' ry='28' fill='%23fff'/><ellipse cx='594' cy='1' rx='49' ry='31' fill='%23fff'/><ellipse cx='636' cy='3' rx='44' ry='24' fill='%23fff'/><ellipse cx='700' cy='2' rx='52' ry='29' fill='%23fff'/></svg>") 0 0 / 700px 48px repeat-x;
+}
+.nav ul { display: flex; flex-wrap: wrap; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.nav a { text-decoration: none; color: var(--deep-blue); font-weight: 500; }
+.nav a:hover { color: var(--ucla-blue); }
+.nav-brand { font-family: var(--font-display); font-weight: 700 !important; letter-spacing: 0.04em; font-size: 1.25rem; text-transform: uppercase; }
+
+/* Hero: alpine night sky fading into a snowy ridge */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 5rem 1.5rem 12.5rem; /* room under the intro so the bears never touch the text */
+  color: var(--snow);
+  /* A few "stars" over the alpine night sky */
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.8) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 90% 55%, rgba(255, 255, 255, 0.8) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 55% 12%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, var(--deep-blue) 0%, var(--ucla-blue) 100%);
+  overflow: hidden;
+}
+.hero > :not(.snow):not(.hero-ridge):not(.bears) { position: relative; z-index: 1; }
+.hero-emoji { font-size: 2rem; margin: 0 0 0.5rem; letter-spacing: 0.3em; }
+
+.hero h1 { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 0 0 1rem; }
+.title-main {
+  font-family: var(--font-wordmark);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 10.5vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 0 var(--deep-blue), 0 8px 0 rgba(0, 59, 92, 0.5), 0 14px 24px rgba(0, 0, 0, 0.3);
+}
+.title-year {
+  display: inline-block;
+  padding: 0.05em 0.6em;
+  border-radius: 999px;
+  background: var(--snow);
+  color: var(--ucla-blue);
+  font-family: var(--font-wordmark);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 7vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  transform: rotate(-2deg);
+  box-shadow: 0 6px 0 var(--deep-blue);
+}
+.tagline {
+  margin: 1.25rem 0 0;
+  color: #bfe3ff; /* glacier ice blue */
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.date {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hero .date { max-width: none; display: flex; flex-direction: column; align-items: center; }
+/* Wide screens: one line, separated by a dot. Phones and tablets: date on one line, location on the next. */
+.hero .date > span { white-space: nowrap; }
+@media (min-width: 900px) {
+  .hero .date { flex-direction: row; justify-content: center; gap: 0.6em; }
+  .date-location::before { content: '·'; margin-right: 0.6em; }
+}
+.hero p { max-width: 38rem; margin-left: auto; margin-right: auto; }
+.hero .muted { color: rgba(255, 255, 255, 0.85); }
+.hero-ridge { position: absolute; left: 0; bottom: -1px; width: 100%; height: 7rem; display: block; z-index: 3; } /* in front of the bears, so they peek from behind the mountains */
+
+.snow { position: absolute; inset: 0; pointer-events: none; }
+.snow span { position: absolute; top: -2rem; color: #fff; opacity: 0.8; animation: fall linear infinite; }
+/* Fall the full height of the hero, so flakes reach the mountains (drawn in front) instead of stopping partway */
+@keyframes fall {
+  from { top: -2rem; rotate: 0deg; }
+  to { top: 100%; rotate: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) { .snow { display: none; } }
+
+.countdown { display: flex; justify-content: center; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+.countdown div {
+  display: flex;
+  flex-direction: column;
+  min-width: 5rem;
+  padding: 0.6rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+.countdown strong { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1.1; }
+.countdown span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+
+.button {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.5rem;
+  background: var(--ucla-blue);
+  color: var(--snow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.button:hover { background: var(--deep-blue); }
+
+/* Sections */
+main { max-width: 52rem; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 3rem 0; border-bottom: 1px solid var(--ice-border); }
+.section:last-child { border-bottom: none; }
+.section h2 {
+  margin-top: 0;
+  color: var(--deep-blue);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.section h2::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.4rem;
+  background: var(--ucla-blue);
+}
+.section h3 { margin-bottom: 0.25rem; color: var(--ucla-blue); font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; letter-spacing: 0.02em; text-transform: uppercase; }
+
+.muted { color: var(--muted); }
+
+.callout {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--ucla-blue);
+  background: var(--ice);
+  border-radius: 0.25rem;
+}
+
+.link-missing { color: var(--muted); font-style: italic; }
+.button.link-missing { background: var(--ice); border: 1px dashed var(--ice-border); }
+
+table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; }
+th, td { text-align: left; padding: 0.5rem 0.75rem; border: 1px solid var(--ice-border); }
+th { background: var(--deep-blue); color: var(--snow); }
+tbody tr:nth-child(even) { background: var(--ice); }
+
+.cards { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.card { padding: 1.25rem; border: 1px solid var(--ice-border); border-top: 4px solid var(--ucla-blue); border-radius: 0.75rem; background: var(--ice); }
+.card h3 { margin-top: 0; }
+.card p { margin-bottom: 0; }
+
+details { border: 1px solid var(--ice-border); border-radius: 0.5rem; padding: 0.75rem 1rem; margin-bottom: 0.75rem; }
+details[open] { background: var(--ice); }
+summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
+
+.footer { text-align: center; padding: 2rem 1.5rem; color: var(--snow); background: var(--deep-blue); font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.flyer { display: block; width: 100%; max-width: 28rem; margin: 1rem auto; border-radius: 0.75rem; border: 1px solid var(--ice-border); }
+
+/* Menu button: hidden on wide screens, shown on phones */
+.nav-toggle { display: none; }
+
+/* Phones: the links collapse behind a Menu button and open as a two-column grid (no sideways swiping) */
+@media (max-width: 700px) {
+  .nav { flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--ucla-blue);
+    color: var(--snow);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .nav-toggle-icon {
+    width: 1.1rem;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 -5px currentColor, 0 5px currentColor;
+  }
+  .nav ul { display: none; width: 100%; padding: 0.6rem 0 0.4rem; }
+  .nav ul.open { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .nav li a {
+    display: block;
+    padding: 0.7rem 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--ice);
+    text-align: center;
+  }
+  main { padding: 0 1rem; }
+}
+
+/* Avoid orphan words: balance short display text, "pretty" for paragraphs */
+p, li, summary, td { text-wrap: pretty; }
+h1, h2, h3, .tagline { text-wrap: balance; }
+
+/* PJ party bears (cut from the flyer) peeking out from behind the snowy mountains */
+.bears { position: absolute; left: 0; right: 0; bottom: 1rem; pointer-events: none; }
+.bear-group { position: absolute; bottom: 0; width: clamp(5.5rem, 17vw, 10rem); }
+.bear-group-left { 
+  left: 3%; 
+}
+.bear-group-right { right: 3%; }
+.bear-img { 
+  position: relative; z-index: 2; display: block; width: 100%; height: auto; filter: drop-shadow(0 3px 4px rgba(0, 59, 92, 0.35)); bottom: 30px; }
+.pine { position: absolute; bottom: 0; z-index: 4; } /* above the ridge (z-index 3): the trees stand in front of the mountains, the bears behind */
+.pine-front { width: 46%; height: 58%; z-index: 5; }
+.pine-front-left { right: -34%; }
+.pine-front-right { left: -2%; width: 52%; }
+.pine-back { width: 28%; height: 42%; }
+.pine-back-left { right: -2%; z-index: 6; bottom: 30px } /* small tree sits closest to the left bear, covering the lower-right of its pajamas */
+.pine-back-right { left: -30%; bottom: -6px; }
+
+/* Phones: give the bears their own room under the intro text, size them by screen width, and keep faces above the ridge */
+@media (max-width: 700px) {
+  .hero { padding-bottom: 12rem; }
+  .bears { bottom: 1.6rem; }
+  .bear-group { width: clamp(5rem, 22vw, 8.5rem); }
+  .hero .intro { max-width: 21rem; } /* keeps the intro to a tidy 3 lines on phones only */
+}
+
+/* Playful but legible: Fredoka is a rounded, friendly sans (no script) */
+.hero .intro {
+  max-width: 600px;
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  line-height: 1.45;
+  text-shadow: 0 2px 0 rgba(0, 59, 92, 0.45);
+}
+
+/* Desktop: pull the mountain range up so little blue is wasted, and line the bears up beside the intro.
+   The intro stays centered between the bears instead of running underneath them. */
+@media (min-width: 701px) {
+  .hero { padding-bottom: 7.5rem; }
+  .hero .intro { max-width: calc(100% - 2 * (clamp(5.5rem, 17vw, 10rem) + 3% + 1rem)); }
+}
+
+.hero .presented-by {
+  font-family: 'Fredoka', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  text-shadow: 0 2px 0 rgba(0, 59, 92, 0.45);
+}
+
+/* The ridge is stretched to the screen width, so on phones it needs fewer peaks:
+   wide screens get the full five-peak range, phones get three gentle peaks. */
+.hero-ridge-narrow { display: none; }
+@media (max-width: 700px) {
+  .hero-ridge-wide { display: none; }
+  .hero-ridge-narrow { display: block; }
+}
+
+/* Phones: nudge the bear and the small left tree up 10px */
+@media (max-width: 900px) {
+  .bear-img { bottom: 10px; }
+  .pine.pine-back.pine-back-left { bottom: 10px; }
+}
+
+/* Activities: Friday and Saturday are sub-sections under one heading */
+.section .subsection { margin-top: 2rem; scroll-margin-top: 4rem; }
+.section .subsection:first-of-type { margin-top: 1rem; }
+.section .subsection-title {
+  margin: 0 0 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 4px solid var(--ucla-blue);
+  color: var(--deep-blue);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.section h4 {
+  margin: 1.25rem 0 0.25rem;
+  color: var(--ucla-blue);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Saturday is split into two groups (skiing/snowboarding and alternatives); h5 is an item within a group */
+.section .group-title {
+  display: inline-block;
+  margin: 1.5rem 0 0.25rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.4rem;
+  background: var(--ice);
+  color: var(--deep-blue);
+  font-size: 1.4rem;
+}
+.section h5 {
+  margin: 1rem 0 0.25rem;
+  color: var(--ucla-blue);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+}

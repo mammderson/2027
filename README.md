@@ -1,16 +1,22 @@
-## Hi there 👋
+# Event Website
 
-<!--
-**mammderson/mammderson** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+React + TypeScript + Vite site hosting all event info, deployed to GitHub Pages.
 
-Here are some ideas to get you started:
+## Edit content
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+All written content lives in [src/content/](src/content/), one file per section. External URLs are all in [src/content/links.ts](src/content/links.ts); an empty one renders a "link coming soon" placeholder. Images go in [src/content/assets/](src/content/assets/).
+
+## Develop
+
+```sh
+npm install
+npm run dev      # local dev server
+npm run build    # type-check + production build
+npm run lint
+```
+
+## Deploy
+
+Pushing to `main` runs [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+One-time setup: repo **Settings → Pages → Source: GitHub Actions**.
+The repo is named `mammderson.github.io`, so the site is served at `https://mammderson.github.io/` (see `base` in `vite.config.ts`).

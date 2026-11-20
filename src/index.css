@@ -12,8 +12,6 @@
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   /* Echoes Mammoth's "GO MAMMOTH" wordmark: very heavy, wide, softly rounded corners. */
   --font-wordmark: 'Rubik', 'Arial Black', sans-serif;
-  /* Echoes their tightly set serif taglines ("If you know, you go."). */
-  --font-serif: 'Source Serif 4', Georgia, serif;
   --font-body: 'Barlow', system-ui, sans-serif;
   color-scheme: light;
 }
@@ -110,10 +108,10 @@ a { color: var(--ucla-blue); }
 .tagline {
   margin: 1.25rem 0 0;
   color: #bfe3ff; /* glacier ice blue */
-  font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  font-family: var(--font-display); /* Barlow Condensed, same as the date below; normal case so it reads as a line, not a label */
+  font-size: clamp(1.3rem, 4vw, 1.85rem);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 .date {
   margin: 1rem 0 0;
@@ -435,6 +433,24 @@ h1, h2, h3, .tagline { text-wrap: balance; }
   box-shadow: 0 2px 6px rgba(0, 59, 92, 0.35);
 }
 .nav a.nav-tickets:hover { color: var(--snow); background: var(--deep-blue); }
+/* Light sweep for the nav pills, drawn into the pill's own background (a wide sheen layer over the blue)
+   and moved by animating background-position. Unlike .shine there is no separate moving layer,
+   so Safari keeps drawing the nav's cloud shadow. Same timing as .shine: a sweep every 5 seconds. */
+.nav a.nav-tickets.nav-shine {
+  background-image:
+    linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%),
+    linear-gradient(135deg, var(--ucla-blue), var(--deep-blue));
+  background-size: 250% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 150% 0, 0 0; /* sheen parked off the left edge */
+  animation: nav-shine 5s ease-in-out infinite;
+}
+.nav a.nav-tickets.nav-shine:hover { background: var(--deep-blue); } /* plain dark on hover, like before */
+@keyframes nav-shine {
+  0%, 75% { background-position: 150% 0, 0 0; } /* off the left edge */
+  100% { background-position: -50% 0, 0 0; } /* swept across and off the right edge */
+}
+@media (prefers-reduced-motion: reduce) { .nav a.nav-tickets.nav-shine { animation: none; } }
 .nav-tickets-mobile { display: none !important; } /* desktop shows the pill inside the link row instead */
 @media (max-width: 700px) {
   .nav a.nav-tickets-mobile { display: inline-block !important; margin-left: auto; padding: 0.45rem 0.9rem; }

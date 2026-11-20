@@ -3,6 +3,7 @@ import { ExternalLink } from '../components/ExternalLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DiscoBall } from '../components/DiscoBall'
 import { MapPill } from '../components/MapPill'
+import { PromoVideo } from '../components/PromoVideo'
 import { links, pjParty as p } from '../content'
 import saveTheDateSquare from '../content/assets/pj-party-save-the-date.png'
 import saveTheDateWide from '../content/assets/pj-party-save-the-date-horizontal.png'
@@ -34,6 +35,9 @@ export function PjParty() {
         <strong>When:</strong> {p.when}
       </p>
 
+      <div className="pj-preview">
+        <PromoVideo placement="pj-party" onLight />
+      </div>
       <BuyTicketsButton />
 
       <div className="party-highlights">

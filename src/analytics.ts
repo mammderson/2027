@@ -9,6 +9,8 @@
 //   - "Nav click": every link that jumps within the page (nav bar, logo, FAQ "see ..." links), with where it goes
 //     and the section it was clicked in (nav = the nav bar, faq = an FAQ answer).
 //   - "Section view": the first time each section reaches the middle of the screen during a visit.
+//   - "Video open" / "Video finished": the promo video player was opened / played to the end.
+//     The ticket button on its end screen shows up as a "Link click" in section "header".
 //
 // Excluding your own devices: open the site with ?notrack (e.g. mammderson.github.io/?notrack) once in each
 // browser you use. ?notrack=off turns tracking back on. It sets Umami's own "umami.disabled" flag.
@@ -71,7 +73,8 @@ function getDeviceId(): string {
 // Events fired before the Umami script finishes loading wait here, then send once it's ready
 const pendingEvents: [string, EventData][] = []
 
-function track(eventName: string, data: EventData) {
+// Also used directly for things that aren't links, e.g. the promo video ("Video open", "Video finished")
+export function track(eventName: string, data: EventData = {}) {
   if (window.umami) window.umami.track(eventName, data)
   else pendingEvents.push([eventName, data])
 }

@@ -5,6 +5,7 @@ import { Countdown } from './components/Countdown'
 import { ExternalLink } from './components/ExternalLink'
 import { FooterTitle } from './components/FooterTitle'
 import { Nav } from './components/Nav'
+import { PromoVideo } from './components/PromoVideo'
 import { Ridge } from './components/Ridge'
 import { Snowfall } from './components/Snowfall'
 import { event, links } from './content'
@@ -40,18 +41,19 @@ export default function App() {
           <span className="title-main">Mammderson</span>
           <span className="title-year">2027</span>
         </h1>
-        <p className="tagline">{event.tagline}</p>
         <p className="date">
           <span>{event.dateDisplay}</span>
           <span className="date-location">{event.location}</span>
         </p>
         <Countdown target={event.countdownTarget} />
-        {/* Ticket call to action: buying a ticket should never need a scroll */}
+        {/* Trailer and ticket buttons: part of the first impression, so neither should need a scroll */}
         <div className="hero-cta">
-          <ExternalLink url={links.campusGroupsPjParty} variant="button" className="button-tickets shine">
+          <PromoVideo placement="hero" />
+          <ExternalLink url={links.campusGroupsPjParty} variant="button" className="button-tickets">
             🎟️ Get PJ Party tickets now!
           </ExternalLink>
         </div>
+        <p className="tagline">{event.tagline}</p>
         <p className="intro">{event.intro}</p>
         <Ridge className="hero-ridge" />
         <Bears />

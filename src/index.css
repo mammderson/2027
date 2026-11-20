@@ -42,7 +42,7 @@ a { color: var(--ucla-blue); }
   gap: 0.5rem 1.5rem;
   align-items: center;
   justify-content: space-between;
-  padding:12px 32px 0px 32px;
+  padding: 8px 32px 0px 32px;
   background: var(--snow);
   /* soft shadow follows the cloud outline, including the bumps below */
   filter: drop-shadow(0 3px 3px rgba(0, 59, 92, 0.25)) drop-shadow(0 8px 10px rgba(0, 59, 92, 0.3));
@@ -54,7 +54,7 @@ a { color: var(--ucla-blue); }
   left: 0;
   right: 0;
   top: calc(100% - 1px);
-  height: 48px;
+  height: 48px; /* must match the cloud drawing's 700 x 48 proportions, or the tiles shrink and leave gaps */
   pointer-events: none;
   background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 48'><rect width='700' height='6' fill='%23fff'/><ellipse cx='0' cy='2' rx='52' ry='29' fill='%23fff'/><ellipse cx='47' cy='4' rx='39' ry='28' fill='%23fff'/><ellipse cx='100' cy='8' rx='40' ry='16' fill='%23fff'/><ellipse cx='148' cy='6' rx='37' ry='33' fill='%23fff'/><ellipse cx='201' cy='2' rx='50' ry='34' fill='%23fff'/><ellipse cx='255' cy='1' rx='36' ry='30' fill='%23fff'/><ellipse cx='307' cy='3' rx='37' ry='15' fill='%23fff'/><ellipse cx='354' cy='0' rx='43' ry='33' fill='%23fff'/><ellipse cx='401' cy='7' rx='50' ry='24' fill='%23fff'/><ellipse cx='449' cy='3' rx='42' ry='30' fill='%23fff'/><ellipse cx='502' cy='0' rx='45' ry='29' fill='%23fff'/><ellipse cx='551' cy='4' rx='38' ry='28' fill='%23fff'/><ellipse cx='594' cy='1' rx='49' ry='31' fill='%23fff'/><ellipse cx='636' cy='3' rx='44' ry='24' fill='%23fff'/><ellipse cx='700' cy='2' rx='52' ry='29' fill='%23fff'/></svg>") 0 0 / 700px 48px repeat-x;
 }
@@ -68,7 +68,7 @@ a { color: var(--ucla-blue); }
 .hero {
   position: relative;
   text-align: center;
-  padding: 5rem 1.5rem 12.5rem; /* room under the intro so the bears never touch the text */
+  padding: calc(5rem - 12px) 1.5rem 12.5rem; /* top: room under the nav's clouds; bottom: room under the intro so the bears never touch the text */
   color: var(--snow);
   /* A few "stars" over the alpine night sky */
   background:
@@ -107,8 +107,9 @@ a { color: var(--ucla-blue); }
   transform: rotate(-2deg);
   box-shadow: 0 6px 0 var(--deep-blue);
 }
+/* Sits right above the intro ("Pack your ski fits...") as its lead-in line */
 .tagline {
-  margin: 1.25rem 0 0;
+  margin: 0 0 0.5rem;
   color: #bfe3ff; /* glacier ice blue */
   font-family: var(--font-display); /* Barlow Condensed, same as the date below; normal case so it reads as a line, not a label */
   font-size: clamp(1.3rem, 4vw, 1.85rem);
@@ -117,6 +118,7 @@ a { color: var(--ucla-blue); }
 }
 .date {
   margin: 1rem 0 0;
+  color: #bfe3ff; /* glacier ice blue, like the tagline: lets the title and buttons stand out */
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 5vw, 2.25rem);
   font-weight: 700;
@@ -135,7 +137,22 @@ a { color: var(--ucla-blue); }
 .hero-ridge { color: var(--snow); position: absolute; left: 0; bottom: -1px; width: 100%; height: 7rem; display: block; z-index: 3; } /* in front of the bears, so they peek from behind the mountains */
 
 .snow { position: absolute; inset: 0; pointer-events: none; }
-.snow span { position: absolute; top: -2rem; color: #fff; opacity: 0.8; animation: fall linear infinite; }
+.snow { --snow-slowdown: 1; } /* multiplies every flake's fall time: higher = slower */
+.snow span {
+  position: absolute;
+  top: -2rem;
+  color: #fff;
+  opacity: 0.8;
+  animation: fall linear infinite;
+  animation-duration: calc(var(--fall-duration) * var(--snow-slowdown));
+  animation-delay: calc(var(--fall-delay) * var(--snow-slowdown)); /* scaled too, so flakes stay spread out */
+}
+/* Phones: the hero is taller, so flakes cover more distance in the same time and look rushed. Slow them down. */
+/* All 24 flakes on a narrow screen is a blizzard, so phones show every other one */
+@media (max-width: 700px) {
+  .snow { --snow-slowdown: 1.6; }
+  .snow span:nth-child(even) { display: none; }
+}
 /* Fall the full height of the hero, so flakes reach the mountains (drawn in front) instead of stopping partway */
 @keyframes fall {
   from { top: -2rem; rotate: 0deg; }
@@ -149,12 +166,14 @@ a { color: var(--ucla-blue); }
   flex-direction: column;
   min-width: 5rem;
   padding: 0.6rem 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  /* Darker "wells" with an ice-blue edge: the countdown is information, so it sits back,
+     and the light, glassy Preview pill below reads as the thing to tap */
+  border: 1px solid rgba(191, 227, 255, 0.3);
   border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 30, 55, 0.3);
 }
 .countdown strong { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1.1; }
-.countdown span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+.countdown span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #bfe3ff; } /* ice blue, like the date */
 
 .button {
   display: inline-block;
@@ -244,15 +263,20 @@ summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
 /* Menu button: hidden on wide screens, shown on phones */
 .nav-toggle { display: none; }
 
+/* Menu / Close label: both words stacked in one grid cell; the hidden one still takes up space, so the width never changes */
+.nav-toggle-label { display: inline-grid; }
+.nav-toggle-label > span { grid-area: 1 / 1; text-align: center; }
+.nav-toggle-word-hidden { visibility: hidden; }
+
 /* Phones: the links collapse behind a Menu button and open as a two-column grid (no sideways swiping) */
 @media (max-width: 700px) {
-  .nav { flex-wrap: wrap; justify-content: space-between; align-items: center; column-gap: 0.5rem; padding: 0.6rem 1rem; }
+  .nav { flex-wrap: wrap; justify-content: space-between; align-items: center; column-gap: 0.5rem; padding: 0.35rem 1rem; }
   .nav-brand-text { display: none; } /* logo only, to keep the top row on one line */
   .nav-toggle {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    height: 2.5rem; /* matches the phone PJ Party pill (.nav-tickets-mobile) */
+    height: 2.25rem; /* matches the phone PJ Party pill (.nav-tickets-mobile) */
     padding: 0 0.9rem;
     /* Outline style, so it reads as secondary next to the solid PJ Party pill instead of a mismatched second blue */
     border: 2px solid var(--ucla-blue);
@@ -272,16 +296,18 @@ summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
     background: currentColor;
     box-shadow: 0 -5px currentColor, 0 5px currentColor;
   }
-  .nav ul { display: none; width: 100%; padding: 0.6rem 0 0.4rem; }
-  /* grid-auto-rows: 1fr makes every row as tall as the tallest, so all tiles match even when one label wraps */
-  .nav ul.open { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 0.5rem; }
+  .nav ul { display: none; width: 100%; padding: 0.4rem 0 0.3rem; }
+  /* grid-auto-rows: 1fr makes every row as tall as the tallest, so all tiles match even when one label wraps.
+     Compact tiles, so the open menu doesn't take over the screen. */
+  .nav ul.open { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 0.4rem; }
   .nav li { display: flex; }
   .nav li a {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.7rem 0.5rem;
+    padding: 0.45rem 0.5rem;
+    font-size: 0.95rem;
     border-radius: 0.5rem;
     background: var(--ice);
     text-align: center;
@@ -409,7 +435,171 @@ h1, h2, h3, .tagline { text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .shine::after { animation: none; display: none; } }
 
 /* Hero: ticket button right under the countdown */
-.hero-cta { margin: -0.5rem 0 2rem; }
+.hero-cta { margin: -0.5rem 0 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
+
+/* Promo video button, above the ticket button: an outlined pill, so the ticket button stays the solid main action.
+   The outline is drawn by ::before so a gold and ice-blue streak can run around it (see .button-video::before). */
+.button.button-video {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.3rem 0.6rem 0.7rem;
+  border: 2px solid transparent; /* keeps the pill's size; the visible outline is the ring below */
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--snow);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: normal;
+  text-transform: none; /* sentence case, so "YOUR" in the label stands out */
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+/* Phones: tighten the hero so the trailer and ticket buttons show without scrolling */
+@media (max-width: 700px) {
+  .hero-emoji { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .countdown { margin: 1rem 0 1.25rem; }
+  .countdown div { padding: 0.4rem 0.5rem; }
+  .countdown strong { font-size: 2rem; }
+  .button.button-video { font-size: 0.95rem; white-space: nowrap; } /* one line: "weekend!" never drops to its own line */
+}
+.button.button-video:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-1px); }
+
+/* The animated outline: a ring (the pill shape with its middle cut out by the mask) filled with a cone of color
+   that rotates, so a gold-to-ice-blue streak travels around a soft white outline. */
+@property --ring-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.button.button-video::before {
+  content: '';
+  position: absolute;
+  inset: -2px; /* over the transparent border */
+  padding: 2px; /* ring thickness: keep equal to the border width above */
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--ring-angle),
+    var(--ring-base) 0deg,
+    var(--gold) 50deg,
+    var(--ring-tail) 110deg,
+    var(--ring-base) 160deg 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: ring-spin 3s linear infinite;
+  pointer-events: none;
+}
+@keyframes ring-spin { to { --ring-angle: 360deg; } }
+/* Ring colors: on the hero, a soft white outline with an ice-blue tail */
+.button.button-video { --ring-base: rgba(255, 255, 255, 0.7); --ring-tail: #bfe3ff; }
+
+/* Light version for white sections (PJ Party): ice fill, dark text, a plain blue outline (no moving streak) */
+.button.button-video.on-light {
+  background: var(--ice);
+  color: var(--deep-blue);
+}
+.button.button-video.on-light::before { background: rgba(39, 116, 174, 0.55); animation: none; }
+.button.button-video.on-light:hover { background: #dcebf6; }
+.button.button-video.on-light .button-video-play { background: var(--ucla-blue); color: var(--snow); }
+.pj-preview { margin: 1rem 0 0; } /* sits just above the first Buy tickets button */
+/* Phones: full width, like the Buy tickets button under it */
+@media (max-width: 700px) {
+  .button.button-video.on-light { display: flex; width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .button.button-video::before { animation: none; } }
+.button-video-play {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--snow);
+  color: var(--deep-blue);
+  font-size: 0.8rem;
+  padding-left: 0.15rem; /* the ▶ glyph looks off-center without a nudge */
+}
+
+/* Promo video player: vertical video, as tall as the screen allows */
+.video-dialog { padding: 0; border: none; background: transparent; max-width: none; max-height: none; overflow: visible; }
+.video-dialog::backdrop { background: rgba(0, 20, 35, 0.88); }
+.video-frame { position: relative; }
+.video-frame video {
+  display: block;
+  height: min(88dvh, 92vw * 16 / 9); /* 9:16 video: limited by the screen's height, or by its width on narrow phones */
+  aspect-ratio: 9 / 16;
+  border-radius: 0.75rem;
+  background: #000;
+}
+.video-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--snow);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.video-close:hover { background: rgba(0, 0, 0, 0.8); }
+.video-frame video { cursor: pointer; } /* tap to pause / resume */
+/* Big ▶ in the middle, only while paused */
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.5rem;
+  height: 4.5rem;
+  padding-left: 0.3rem; /* the ▶ glyph looks off-center without a nudge */
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--snow);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.video-play:hover { background: rgba(0, 0, 0, 0.75); }
+/* End screen over the last frame: ticket button and "Watch again" */
+.video-end {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 30, 50, 0.72);
+  text-align: center;
+}
+.video-end-title {
+  margin: 0;
+  color: var(--snow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.video-replay {
+  border: none;
+  background: none;
+  color: var(--snow);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.video-replay:hover { opacity: 1; }
 .button.button-tickets {
   --shine: rgba(39, 116, 174, 0.3);
   padding: 0.8rem 1.6rem;
@@ -483,9 +673,11 @@ a.text-link:hover { color: #8bb8e8; } /* UCLA "Lighter Blue" */
 .nav-tickets-mobile { display: none !important; } /* desktop shows the pill inside the link row instead */
 @media (max-width: 700px) {
   /* Same fixed height as the Menu button (.nav-toggle), so the two sit level; the emoji would otherwise make it taller */
-  .nav a.nav-tickets-mobile { display: inline-flex !important; align-items: center; height: 2.5rem; margin-left: auto; padding: 0 0.9rem; }
+  .nav a.nav-tickets-mobile { display: inline-flex !important; align-items: center; height: 2.25rem; margin-left: auto; padding: 0 0.9rem; }
   /* Match the other tiles in the open menu: same shape and padding (the pill's own smaller padding would win otherwise) */
-  .nav li a.nav-tickets { display: flex; padding: 0.7rem 0.5rem; border-radius: 0.5rem; }
+  .nav li a.nav-tickets { display: flex; padding: 0.45rem 0.5rem; border-radius: 0.5rem; }
+  /* PJ Party gets a full-width row of its own, so it stands out and Swag + FAQ pair up on the last row */
+  .nav li:has(> a.nav-tickets) { grid-column: 1 / -1; }
 }
 /* The PJ Party link in the nav's link list is gold, on wide screens and in the phone menu.
    (In the phone menu a dark tile would look like "the page you're on".) Same sheen as the blue pills. */

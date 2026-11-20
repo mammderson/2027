@@ -42,7 +42,12 @@ export function Nav() {
         aria-controls="nav-links"
         onClick={() => setMenuOpen((open) => !open)}
       >
-        {menuOpen ? 'Close' : 'Menu'}
+        {/* Both words sit in the same spot and only one shows, so the button is always as wide as "Close"
+            and the GET PJ PARTY pill next to it never shifts when the menu opens */}
+        <span className="nav-toggle-label">
+          <span className={menuOpen ? 'nav-toggle-word-hidden' : undefined}>Menu</span>
+          <span className={menuOpen ? undefined : 'nav-toggle-word-hidden'}>Close</span>
+        </span>
         <span className="nav-toggle-icon" aria-hidden="true" />
       </button>
       <ul id="nav-links" className={menuOpen ? 'open' : undefined}>

@@ -2,6 +2,10 @@
 // "link coming soon" placeholder, so nothing silently points nowhere.
 export const links = {
   whatsappCommunity: 'https://chat.whatsapp.com/DC1b41N5Uhl6cqADb8ZNKB',
+  // Ikon Pass app (Day Activities > Ikon Pass tip)
+  ikonAppApple: 'https://apps.apple.com/us/app/ikon-pass/id1482191120',
+  ikonAppGoogle: 'https://play.google.com/store/apps/details?id=com.alterramtnco.ikonpass&hl=en_US&pli=1',
+  whatsappGroupLessons:'https://chat.whatsapp.com/H4pu5j1WMKj7lWIbzrack9?mode=gi_t', // Ski/Snowboard Group Lesson chat (Lessons tab note)
   limelight: 'https://www.limelighthotels.com/mammoth?gclsrc=aw.ds&gad_source=1&gad_campaignid=23168276798&gbraid=0AAAABAh9F58rqtaMgypuPaQm5tXXJK3vp&gclid=CjwKCAjwx-zHBhBhEiwA7Kjq613WaDDFzOent2pRemttNZYVXP_hCZcXkJ40bTgFjKJSNhu9Wqsd7RoCtMQQAvD_BwE',
   // Directions by hotel name (no street address needed); each opens the maps app on phones
   limelightAppleMaps: 'https://maps.apple.com/?daddr=Limelight+Hotel+Mammoth+Lakes+CA',

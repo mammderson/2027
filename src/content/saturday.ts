@@ -29,16 +29,22 @@ export const saturday = {
   ikon: {
     title: 'Ikon Pass',
     body: "Mammoth Mountain is included on both the Ikon Pass and Ikon Base Pass, so if you have either, you're all set to hit the slopes! If you're feeling generous, consider sharing your 25% Ikon Family & Friends discount with a fellow FEMBA!",
+    tip: 'Download the Ikon Pass app to track your stats, find your way around the mountain and share your location with your slope buddies. Non-pass holders can use it too!', // shown after "Tip:"
   },
   groupRates: {
     title: 'Discounted rates for rentals, lift tickets and lessons',
     body: 'Our group can book lift tickets, rentals and lessons at a discounted rate. Call 1-800-MAMMOTH and share the UCLA Anderson booking ID.',
-    phone: '1-800-MAMMOTH (1-800-626-6684)',
+    phone: '1-800-MAMMOTH (1-800-626-6684) ',
     phoneUrl: 'tel:+18006266684', // opens the dialer on phones
-    bookingId: 'Coming Soon! Check back Nov 30', // UCLA Anderson booking ID (not issued yet)
-    deadline: 'Call before January 21 to get the group discount.',
+    bookingId: '38424 (or mention UCLA Anderson 2027)', // UCLA Anderson booking ID (not issued yet)
+    // Two deadline callouts. Lessons: Mammoth's Sports School sheet requires group lessons to be booked
+    // 14 days before the lesson date. Both dates are also in the FAQ deadlines table (event.ts), so change both together.
+    deadlines: [
+      'Lessons: call at least 14 days before your lesson to get the group discount.',
+      'Lift tickets and rentals: call by January 21 to get the group discount.',
+    ],
     rules: [
-      'Mammoth will NOT allow same-day group purchases. After January 21, activities and rentals may be purchased at retail price (no discount).',
+      'Mammoth will NOT allow same-day group purchases. After these deadlines, activities and rentals may be purchased at retail price (no discount).',
       'Call the same number for lift tickets, lessons and rental equipment.',
       'Request your pickup at one of the lodges (Canyon Lodge is the closest to Limelight) or self-service kiosk at Mountain Center in The Village (near the Dave McCoy statue).',
     ],

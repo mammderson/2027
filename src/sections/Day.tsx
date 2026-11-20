@@ -1,6 +1,8 @@
 import { BulletList } from '../components/BulletList'
 import { Callout } from '../components/Callout'
+import { faApple, faGooglePlay } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GroupRates } from '../components/GroupRates'
 import { MapPill } from '../components/MapPill'
 import { Pill } from '../components/Pill'
 import { Section } from '../components/Section'
@@ -33,7 +35,11 @@ export function Day() {
 
         <h4>{s.groupRates.title}</h4>
         <p>{s.groupRates.body}</p>
-        <Callout type="deadline">{s.groupRates.deadline}</Callout>
+        {s.groupRates.deadlines.map((deadline) => (
+          <Callout key={deadline} type="deadline">{deadline}</Callout>
+        ))}
+        {/* What's offered and prices, before the phone number and booking ID */}
+        <GroupRates />
         <p>
           <strong>Phone:</strong> {s.groupRates.phone}{' '}
           <a href={s.groupRates.phoneUrl} className="pill">Call</a>
@@ -44,6 +50,16 @@ export function Day() {
 
         <h4>{s.ikon.title}</h4>
         <p>{s.ikon.body}</p>
+        <p className="tip-note">
+          💡 Tip: {s.ikon.tip}{' '}
+          {/* Same pill style as the Apple / Google Maps pills */}
+          <Pill url={links.ikonAppApple} label="Ikon Pass app on the App Store">
+            <FontAwesomeIcon icon={faApple} className="pill-icon pill-icon-apple" />App Store
+          </Pill>{' '}
+          <Pill url={links.ikonAppGoogle} label="Ikon Pass app on Google Play">
+            <FontAwesomeIcon icon={faGooglePlay} className="pill-icon" />Google Play
+          </Pill>
+        </p>
       </div>
 
       {/* id is the target of the FAQ link ("see Day Activities > Alternative Activities") */}

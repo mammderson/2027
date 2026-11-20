@@ -6,12 +6,13 @@ interface NavLink {
   id: string
   label: string
   highlight?: boolean // renders the link as the flashy ticket pill
+  phoneEmoji?: string // shown before the label in the phone menu only
 }
 
 const navLinks: NavLink[] = [
   { id: 'stay', label: 'Stay' },
   { id: 'whatsapp', label: 'WhatsApp' },
-  { id: 'day', label: 'Day Activities' },
+  { id: 'day', label: 'Day Activities', phoneEmoji: '🎿' }, // hints that skiing & snowboarding are in here
   { id: 'night', label: 'Night Activities' },
   { id: 'pj-party', label: '🪩 PJ Party', highlight: true },
   { id: 'swag', label: 'Swag' },
@@ -58,6 +59,7 @@ export function Nav() {
               className={link.highlight ? 'nav-tickets nav-shine' : undefined}
               onClick={closeMenu}
             >
+              {link.phoneEmoji && <span className="nav-phone-emoji" aria-hidden="true">{link.phoneEmoji} </span>}
               {link.label}
             </a>
           </li>

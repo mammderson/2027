@@ -238,6 +238,14 @@ a.pill {  font-size: 0.85rem; font-weight: 600; line-height: 1.4; vertical-align
   border-radius: 0.25rem;
 }
 
+/* Callouts stacked back to back (e.g. the two ski deadlines): 12px apart instead of a full paragraph gap.
+   Both sides are set because the two margins overlap; the larger one would win. */
+.callout:has(+ .callout) { margin-bottom: 12px; }
+.callout + .callout { margin-top: 12px; }
+/* Same 12px between the last deadline callout and the "See group rates & options" bar */
+.callout:has(+ details.group-rates) { margin-bottom: 12px; }
+.callout + details.group-rates { margin-top: 12px; }
+
 .link-missing { color: var(--muted); font-style: italic; }
 .button.link-missing { background: var(--ice); border: 1px dashed var(--ice-border); }
 
@@ -255,6 +263,91 @@ details { border: 1px solid var(--ice-border); border-radius: 0.5rem; padding: 0
 details[open] { background: var(--ice); }
 summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
 
+/* A small gray side note, e.g. the Ikon app tip */
+.tip-note { font-size: 0.9rem; color: var(--muted); }
+.tip-note a.pill { font-size: 0.75rem; padding: 0.1rem 0.6rem; } /* smaller pills to match the smaller text */
+
+/* Group rates (Day Activities > Skiing & Snowboarding): toggle, key point, tabs, compact price tables */
+details.group-rates { margin-top: 1rem; border: 2px solid var(--deep-blue); border-radius: 0.75rem; scroll-margin-top: 1rem; } /* a #group-rates link lands just below the sticky nav (adds to the page's scroll-padding-top) */
+details.group-rates[open] { background: var(--snow); } /* white inside, so the tables read clearly */
+/* The toggle: a full-width dark blue bar with white text, an icon and an arrow, so it reads as something to tap */
+details.group-rates > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: -0.75rem -1rem; /* fill the box edge to edge (cancels the details padding) */
+  padding: 0.55rem 1rem;
+  border-radius: 0.6rem;
+  background: var(--deep-blue);
+  color: var(--snow);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  list-style: none; /* hide the default ▸ marker */
+}
+details.group-rates > summary::-webkit-details-marker { display: none; } /* Safari's default marker */
+details.group-rates > summary::before { content: '🎿'; font-size: 1.15rem; line-height: 1; }
+details.group-rates > summary::after {
+  content: '▾';
+  margin-left: auto;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--snow);
+  transition: transform 0.2s ease;
+}
+/* No highlight when tapped: no browser tap flash, no outline on click, and the hover color only on
+   devices with a real mouse (on phones it would otherwise stick after a tap). Keyboard users still get an outline. */
+details.group-rates > summary { -webkit-tap-highlight-color: transparent; }
+details.group-rates > summary:focus { outline: none; }
+details.group-rates > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+@media (hover: hover) {
+  details.group-rates > summary:hover { background: var(--ucla-blue); }
+}
+details.group-rates[open] > summary { margin-bottom: 0.75rem; border-radius: 0.6rem 0.6rem 0 0; }
+details.group-rates[open] > summary::after { transform: rotate(180deg); }
+.group-rates-key {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--gold);
+  border-radius: 0.25rem;
+  background: #fff8db; /* pale gold: the one thing to notice */
+  font-size: 0.95rem;
+}
+.group-rates-tabs { display: flex; gap: 0.4rem; margin: 0.75rem 0; flex-wrap: wrap; }
+.group-rates-tabs button {
+  padding: 0.4rem 0.9rem;
+  border: 1.5px solid var(--ice-border);
+  border-radius: 999px;
+  background: var(--snow);
+  color: var(--deep-blue);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.group-rates-tabs button:hover { border-color: var(--ucla-blue); }
+/* Phones: all four tabs on one row, equal widths */
+@media (max-width: 700px) {
+  /* One row: each tab as wide as its label, labels never wrap */
+  .group-rates-tabs { flex-wrap: nowrap; gap: 0.3rem; }
+  .group-rates-tabs button { flex: 1 1 auto; padding: 0.4rem 0.5rem; font-size: 0.85rem; white-space: nowrap; }
+}
+.group-rates-tabs button.active { border-color: var(--deep-blue); background: var(--deep-blue); color: var(--snow); }
+.group-rates-intro, .group-rates-fees { font-size: 0.9rem; color: var(--muted); margin: 0.5rem 0; }
+.rates-table { margin: 0.5rem 0 1rem; font-size: 0.95rem; }
+.rates-table th, .rates-table td { padding: 0.45rem 0.7rem; }
+.rates-table thead th { font-weight: 700; vertical-align: bottom; }
+.rates-table caption { caption-side: top; text-align: left; padding: 0 0 0.35rem; font-weight: 700; color: var(--deep-blue); }
+.rates-table thead td { background: var(--deep-blue); } /* empty corner cell, same as the header row */
+.rates-table-note { display: block; font-weight: 400; font-size: 0.8rem; opacity: 0.85; }
+.rates-table caption .rates-table-note { color: var(--muted); opacity: 1; }
+.rates-table tbody th { font-weight: 500; background: transparent; color: var(--text); } /* row labels take the row's stripe */
+.rates-table .rates-price { text-align: right; white-space: nowrap; width: 1%; } /* price columns hug their content */
+.rates-table tbody .rates-price { font-weight: 700; color: var(--deep-blue); }
+
 .footer { text-align: center; padding: 2rem 1.5rem; color: var(--snow); background: var(--deep-blue); font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
 
 .flyer { display: block; width: 100%; max-width: 28rem; margin: 1rem auto; border-radius: 0.75rem; border: 1px solid var(--ice-border); }
@@ -262,6 +355,12 @@ summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
 
 /* Menu button: hidden on wide screens, shown on phones */
 .nav-toggle { display: none; }
+
+/* Emoji next to a link label in the phone menu only (e.g. 🎿 Day Activities); hidden in the desktop link row */
+.nav-phone-emoji { display: none; }
+@media (max-width: 700px) {
+  .nav-phone-emoji { display: inline; margin-right: 0.3rem; }
+}
 
 /* Menu / Close label: both words stacked in one grid cell; the hidden one still takes up space, so the width never changes */
 .nav-toggle-label { display: inline-grid; }
@@ -804,3 +903,26 @@ a.pill.pill-white:hover { border-color: var(--deep-blue); background: var(--deep
 .activity-icon { height: 1.75rem; color: var(--ucla-blue); }
 .activity-name { color: var(--ucla-blue); font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1; }
 .activity-card a.pill { margin: auto 0 0; } /* pills sit at the bottom so they line up across cards */
+
+/* Swag: text on the left, teaser image on the right, both aligned to the top; stacked on phones */
+.swag-item { display: grid; grid-template-columns: 1fr minmax(0, 16rem); gap: 1.5rem; align-items: start; }
+.swag-figure { margin: 0; }
+.swag-zoom { position: relative; display: block; width: 100%; padding: 0; border: none; background: none; cursor: zoom-in; }
+.swag-img { display: block; width: 100%; border-radius: 0.75rem; border: 1px solid var(--ice-border); }
+.swag-zoom-hint {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--snow);
+  font-size: 0.75rem;
+}
+.swag-caption { margin-top: 0.4rem; font-size: 0.85rem; font-style: italic; color: var(--muted); text-align: center; }
+.section .swag-text .subsection-title { margin-top: 0; }
+.swag-zoom-img { display: block; max-width: 92vw; max-height: 88dvh; border-radius: 0.75rem; cursor: zoom-out; }
+@media (max-width: 700px) {
+  .swag-item { grid-template-columns: 1fr; gap: 1rem; }
+  .swag-figure { max-width: 18rem; margin: 0 auto; }
+}

@@ -21,9 +21,10 @@ export interface Deadline {
 }
 
 // Shown as a table in the first FAQ answer. Each date is also shown in its own section, so change both together:
-// accommodations.ts (howToBook.note), saturday.ts (groupRates.deadline), pjParty.ts (ticketsCallout).
+// accommodations.ts (howToBook.note), saturday.ts (groupRates.deadlines), pjParty.ts (ticketsCallout).
 export const deadlines: Deadline[] = [
   { item: 'Room booking at the room block rate', detail: 'Jan 4, 2027 at 11:59PM PST' },
-  { item: 'Discounted lift tickets, rentals and lessons (call Mammoth)', detail: 'Jan 21, 2027 at 11:59PM PST' },
+  { item: 'Discounted ski & snowboard lessons (call Mammoth)', detail: '14 days before your lesson (Jan 8 for Friday, Jan 9 for Saturday, Jan 10 for Sunday)' },
+  { item: 'Discounted lift tickets and rentals (call Mammoth)', detail: 'Jan 21, 2027 at 11:59PM PST' },
   { item: 'PJ Party tickets (Campus Groups)', detail: 'Jan 23, 2027 at 7:00PM PST' },
 ]

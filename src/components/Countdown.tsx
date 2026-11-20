@@ -20,7 +20,7 @@ export function Countdown({ target }: { target: string }) {
   }, [target])
 
   return (
-    <div className="countdown" aria-label="Time until the event">
+    <div className="countdown" aria-label="Time until the PJ Party">
       {(['days', 'hours', 'minutes'] as const).map((unit) => (
         <div key={unit}>
           <strong>{timeLeft[unit]}</strong>

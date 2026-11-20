@@ -13,7 +13,7 @@ const navLinks: NavLink[] = [
   { id: 'whatsapp', label: 'WhatsApp' },
   { id: 'day', label: 'Day Activities' },
   { id: 'night', label: 'Night Activities' },
-  { id: 'pj-party', label: '🎟️ PJ Party', highlight: true },
+  { id: 'pj-party', label: '🪩 PJ Party', highlight: true },
   { id: 'swag', label: 'Swag' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -29,8 +29,12 @@ export function Nav() {
 
   return (
     <nav className="nav">
-      <a href="#top" className="nav-brand" onClick={closeMenu}>{event.name}</a>
-      <ExternalLink url={links.campusGroupsPjParty} className="nav-tickets nav-tickets-mobile nav-shine">🎟️ PJ Party</ExternalLink>
+      {/* Phones show only the M logo, so the brand, Tickets pill and Menu button fit on one line */}
+      <a href="#top" className="nav-brand" aria-label={event.name} onClick={closeMenu}>
+        <img src="/m-logo.svg" alt="" className="nav-brand-logo" />
+        <span className="nav-brand-text">{event.name}</span>
+      </a>
+      <ExternalLink url={links.campusGroupsPjParty} className="nav-tickets nav-tickets-mobile nav-shine">GET PJ PARTY 🎟️ </ExternalLink>
       <button
         type="button"
         className="nav-toggle"

@@ -16,7 +16,7 @@ export const links = {
   limelightLounge:'https://www.limelighthotels.com/mammoth/dining',
   limelightAmenities: 'https://www.limelighthotels.com/mammoth/stay/amenities',
   roomBlockBooking: "https://www.limelighthotels.com/mammoth/reservations#/booking/step-1?data=('hGhd!'limelight-mammoth'~aeE0DdtE5Dfs.rGat!2~cn!0~cg.alCpo3co3gp!'1549596'~rn.rm3rt*)Bry3rk3re.rr3ss.de.oFBax!0~cy3ds!('pHls3as3st3hHeF~myCsHcHad3nF*!null.AB3*~8%2F2A!%5BB%5D~C!false~D8027'~E!'018Fe*)GsA('He3%01HGFEDCBA83.*_",
-  campusGroupsPjParty: 'https://cglink.me/2cV/r1929086',
+  campusGroupsPjParty: 'https://cglink.me/2cV/r1930194',
   mountainReport: 'https://www.mammothmountain.com/on-the-mountain/mountain-report',
   roadConditions: 'https://www.mammothmountain.com/on-the-mountain/road-conditions',
   ticketTransferForm: 'https://docs.google.com/spreadsheets/d/1uf5cOn-5MbvAfWkSK0Q5irmxgvvVDKzPN_DKjedt7LY/edit?gid=0#gid=0',

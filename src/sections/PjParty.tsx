@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DiscoBall } from '../components/DiscoBall'
 import { MapPill } from '../components/MapPill'
 import { links, pjParty as p } from '../content'
-// Poster hidden for now; uncomment this with the <img> at the bottom to bring it back.
-// import saveTheDate from '../content/assets/pj-party-save-the-date.png'
+import saveTheDateSquare from '../content/assets/pj-party-save-the-date.png'
+import saveTheDateWide from '../content/assets/pj-party-save-the-date-horizontal.png'
 
 // Repeated through the section so a buy button is never far away.
 function BuyTicketsButton() {
@@ -76,11 +76,16 @@ export function PjParty() {
       <BuyTicketsButton />
       <Callout type="deadline">{p.ticketsCallout}</Callout>
 
-      {/* <img
-        className="flyer"
-        src={saveTheDate}
-        alt="Mammderson 2027 save the date: PJ Party, Limelight Hotel, Mammoth, January 23, 2027"
-      /> */}
+      {/* Wide screens get the horizontal flyer; phones and small windows get the square one.
+          701px matches the phone breakpoint used everywhere else (max-width: 700px). */}
+      <picture>
+        <source media="(min-width: 701px)" srcSet={saveTheDateWide} />
+        <img
+          className="flyer"
+          src={saveTheDateSquare}
+          alt="Mammderson 2027 save the date: PJ Party, Limelight Hotel, Mammoth, January 23, 2027"
+        />
+      </picture>
     </div>
   )
 }

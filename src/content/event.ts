@@ -4,7 +4,7 @@ export const event = {
   tagline: 'The most anticipated FEMBA weekend of the year',
   dateDisplay: 'January 22–24, 2027',
   location: 'Mammoth Mountain',
-  countdownTarget: '2027-01-22T00:00:00-08:00', // Friday, Pacific time
+  countdownTarget: '2027-01-23T19:00:00-08:00', // PJ Party start: Saturday 7PM, Pacific time
   intro:'Pack your ski fits and party PJs. Get ready for an unforgettable takeover at Mammoth Mountain.',
   contacts: ['Jayden Chan', 'Anne Li', 'Jess Timmons'],
   organization: 'UCLA Anderson FEMBA Council'

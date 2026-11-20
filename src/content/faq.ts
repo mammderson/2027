@@ -1,15 +1,21 @@
 // `links` keys refer to entries in links.ts.
+import type { BulletItem } from '../components/BulletList'
 import type { links } from './links'
 
 export interface FaqItem {
   question: string
   answer?: string
-  list?: { text: string; sub?: string[] }[]
+  list?: BulletItem[]
   footer?: string
-  linkKeys?: { label: string; key: keyof typeof links }[]
+  linkKeys?: { label: string; key: keyof typeof links }[] // shown as white pills
+  showDeadlines?: boolean // renders the deadlines table from event.ts
 }
 
 export const faq: FaqItem[] = [
+  {
+    question: 'When do I need to book my room, lift tickets and PJ Party tickets?',
+    showDeadlines: true,
+  },
   {
     question: 'Who can come to the Saturday party?',
     answer: 'Open to all FEMBAs, FEMBA significant others, FEMBA friends and Outdoor Adventures Club (OAC)!',
@@ -47,10 +53,16 @@ export const faq: FaqItem[] = [
         text: 'Lift passes and rentals: ~$250–$350 per person',
         sub: [
           'Mammoth is included on both Ikon and Ikon Base Passes',
-          'See Saturday Day Options > Ski Passes and Ski Rentals',
+          'See Day Activities > Skiing & Snowboarding at Mammoth',
         ],
       },
-      { text: 'Food & drinks', sub: ['Breakfast is included at Limelight!', 'Other meals are pay-as-you-go'] },
+      {
+        text: 'Food & drinks',
+        sub: [
+          { text: 'Breakfast is included at Limelight!', linkKey: 'limelightAmenities' },
+          'Other meals are pay-as-you-go',
+        ],
+      },
     ],
     footer: 'Total estimated weekend cost (per person, sharing a room): ~$500–$1,000, depending on room split and personal spending.',
   },
@@ -62,7 +74,7 @@ export const faq: FaqItem[] = [
   {
     question: 'Do I have to know how to ski?',
     answer:
-      'No! Skiing is totally optional, but highly recommended if you want to experience the full Mammoth magic. Classes are also available. There are plenty of other fun activities in Mammoth too, see Saturday Day Options > Alternative Activities.',
+      'No! Skiing is totally optional, but highly recommended if you want to experience the full Mammoth magic. Classes are also available. There are plenty of other fun activities in Mammoth too, see Day Activities > Alternative Activities.',
   },
   {
     question: 'Ticket transfers, waitlist and room block space',

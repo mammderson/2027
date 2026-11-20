@@ -2,6 +2,7 @@ import { BulletList } from '../components/BulletList'
 import { Callout } from '../components/Callout'
 import { friday } from '../content'
 
+// Rendered inside Night Activities.
 export function Friday() {
   return (
     <div id="friday" className="subsection">
@@ -11,7 +12,7 @@ export function Friday() {
         <div key={o.title}>
           <h4>{o.title}</h4>
           <p>{o.body}</p>
-          {'warning' in o && o.warning && <Callout>{o.warning}</Callout>}
+          {'warning' in o && o.warning && <Callout type="warning">{o.warning}</Callout>}
         </div>
       ))}
       <h4>{friday.dinnerTitle}</h4>

@@ -132,7 +132,7 @@ a { color: var(--ucla-blue); }
 }
 .hero p { max-width: 38rem; margin-left: auto; margin-right: auto; }
 .hero .muted { color: rgba(255, 255, 255, 0.85); }
-.hero-ridge { position: absolute; left: 0; bottom: -1px; width: 100%; height: 7rem; display: block; z-index: 3; } /* in front of the bears, so they peek from behind the mountains */
+.hero-ridge { color: var(--snow); position: absolute; left: 0; bottom: -1px; width: 100%; height: 7rem; display: block; z-index: 3; } /* in front of the bears, so they peek from behind the mountains */
 
 .snow { position: absolute; inset: 0; pointer-events: none; }
 .snow span { position: absolute; top: -2rem; color: #fff; opacity: 0.8; animation: fall linear infinite; }
@@ -193,6 +193,22 @@ main { max-width: 52rem; margin: 0 auto; padding: 0 1.5rem; }
   background: var(--ucla-blue);
 }
 .section h3 { margin-bottom: 0.25rem; color: var(--ucla-blue); font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; letter-spacing: 0.02em; text-transform: uppercase; }
+/* A small "Learn more" pill beside a heading; undoes the heading's display styling. */
+/* The heading lays out as a row so the pill centers on the heading text, not on its baseline */
+.heading-with-link { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+.heading-link { display: inline-flex; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: normal; text-transform: none; }
+/* Small link pills: in headings (.heading-link) and after text (.pill, e.g. WhatsApp "Join", map directions) */
+a.pill {  font-size: 0.85rem; font-weight: 600; line-height: 1.4; vertical-align: 0.1em; } /* margin: breathing room from the text before it */
+.heading-link a, a.pill {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border: 1px solid var(--ice-border);
+  border-radius: 999px;
+  background: var(--ice);
+  color: var(--deep-blue);
+  text-decoration: none;
+}
+.heading-link a:hover, a.pill:hover { background: var(--ucla-blue); border-color: var(--ucla-blue); color: var(--snow); }
 
 .muted { color: var(--muted); }
 
@@ -319,10 +335,10 @@ h1, h2, h3, .tagline { text-wrap: balance; }
 
 /* The ridge is stretched to the screen width, so on phones it needs fewer peaks:
    wide screens get the full five-peak range, phones get three gentle peaks. */
-.hero-ridge-narrow { display: none; }
+.ridge-narrow { display: none; }
 @media (max-width: 700px) {
-  .hero-ridge-wide { display: none; }
-  .hero-ridge-narrow { display: block; }
+  .ridge-wide { display: none; }
+  .ridge-narrow { display: block; }
 }
 
 /* Phones: nudge the bear and the small left tree up 10px */
@@ -331,7 +347,7 @@ h1, h2, h3, .tagline { text-wrap: balance; }
   .pine.pine-back.pine-back-left { bottom: 10px; }
 }
 
-/* Activities: Friday and Saturday are sub-sections under one heading */
+/* Day and Night Activities subheadings (Skiing & Snowboarding, Friday Night, PJ Party...), marked by a vertical line; h4 is an item within one */
 .section .subsection { margin-top: 2rem; scroll-margin-top: 4rem; }
 .section .subsection:first-of-type { margin-top: 1rem; }
 .section .subsection-title {
@@ -344,29 +360,173 @@ h1, h2, h3, .tagline { text-wrap: balance; }
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
-.section h4 {
-  margin: 1.25rem 0 0.25rem;
-  color: var(--ucla-blue);
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
+.section .subsection-title + h4 { margin-top: 0; } /* first subheading right under a title: the title's own gap is enough */
 
-/* Saturday is split into two groups (skiing/snowboarding and alternatives); h5 is an item within a group */
-.section .group-title {
-  display: inline-block;
-  margin: 1.5rem 0 0.25rem;
-  padding: 0.2rem 0.8rem;
-  border-radius: 0.4rem;
-  background: var(--ice);
-  color: var(--deep-blue);
-  font-size: 1.4rem;
-}
-.section h5 {
-  margin: 1rem 0 0.25rem;
+.section h4 {
+  margin: 2rem 0 0.25rem; /* clear gap from the block above, so each subheading starts a new part */
   color: var(--ucla-blue);
   font-family: var(--font-body);
   font-size: 1.1rem;
   font-weight: 700;
+}
+/* Whatever follows a subheading (paragraph, list, cards, table) sits close to it, so the two read as one unit.
+   Without this, the next block's own top margin (about 1rem for paragraphs) sets the gap. */
+.section h4 + * { margin-top: 0.25rem; }
+
+/* ---------- PJ Party ticket call to action ---------- */
+
+/* A soft light sweeps across every few seconds: eye-catching, but no bouncing or pulsing.
+   Set --shine on an element to change the sweep color. */
+.shine { position: relative; overflow: hidden; isolation: isolate; }
+.shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 35%, var(--shine, rgba(255, 255, 255, 0.55)) 50%, transparent 65%);
+  transform: translateX(-130%);
+  animation: shine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes shine {
+  0%, 75% { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+@media (prefers-reduced-motion: reduce) { .shine::after { animation: none; display: none; } }
+
+/* Hero: ticket button right under the countdown */
+.hero-cta { margin: -0.5rem 0 2rem; }
+.button.button-tickets {
+  --shine: rgba(39, 116, 174, 0.3);
+  padding: 0.8rem 1.6rem;
+  background: var(--snow);
+  color: var(--deep-blue);
+  font-size: 1.3rem;
+  box-shadow: 0 4px 0 rgba(0, 59, 92, 0.5), 0 8px 18px rgba(0, 59, 92, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.button.button-tickets:hover {
+  background: var(--ice);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 59, 92, 0.5), 0 12px 22px rgba(0, 59, 92, 0.4);
+}
+/* Same ticket button on a white page: blue fill, white text, white shine, soft blue glow */
+.button.button-tickets.on-light {
+  --shine: rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, var(--ucla-blue), var(--deep-blue));
+  color: var(--snow);
+  box-shadow: 0 6px 16px rgba(39, 116, 174, 0.35);
+}
+.button.button-tickets.on-light:hover {
+  background: linear-gradient(135deg, var(--ucla-blue), var(--ucla-blue));
+  box-shadow: 0 10px 24px rgba(39, 116, 174, 0.45);
+}
+
+/* Nav: the PJ Party link is a filled pill */
+.nav a.nav-tickets {
+  position: relative;
+  z-index: 1; /* above the cloud strip (.nav::after), which would otherwise cover the pill's bottom edge */
+  display: inline-block;
+  padding: 0.2rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--ucla-blue), var(--deep-blue));
+  color: var(--snow);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 59, 92, 0.35);
+}
+.nav a.nav-tickets:hover { color: var(--snow); background: var(--deep-blue); }
+.nav-tickets-mobile { display: none !important; } /* desktop shows the pill inside the link row instead */
+@media (max-width: 700px) {
+  .nav a.nav-tickets-mobile { display: inline-block !important; margin-left: auto; padding: 0.45rem 0.9rem; }
+  /* Match the other tiles in the open menu: same shape and padding (the pill's own smaller padding would win otherwise) */
+  .nav li a.nav-tickets { display: block; padding: 0.7rem 0.5rem; border-radius: 0.5rem; }
+}
+
+/* ---------- PJ Party disco ball, beside the heading ---------- */
+.disco-ball { position: relative; display: inline-block; margin-left: 0.3rem; }
+.disco-ball-emoji { display: inline-block; } /* stays still; only the sparkles animate */
+.disco-ball-sparkle {
+  position: absolute;
+  color: #f5c518;
+  text-shadow: 0 0 6px rgba(245, 197, 24, 0.8);
+  line-height: 1;
+  animation: disco-sparkle 3s ease-in-out infinite;
+}
+.disco-ball-sparkle-1 { top: -0.1em; right: -0.45em; font-size: 0.45em; }
+.disco-ball-sparkle-2 { bottom: 0.05em; left: -0.35em; font-size: 0.35em; animation-delay: -1.5s; } /* out of step with the first */
+@keyframes disco-sparkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .disco-ball-sparkle { animation: none; }
+}
+
+/* ---------- PJ Party highlights: open bar and appetizers as two feature tiles ---------- */
+.party-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0 0.4rem; }
+.party-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  border: 1px solid var(--ice-border);
+  border-top: 4px solid var(--ucla-blue);
+  border-radius: 0.75rem;
+  background: var(--ice);
+  text-align: center;
+}
+.party-highlight-icon { font-size: 2rem; line-height: 1; color: var(--ucla-blue); }
+.party-highlight-title {
+  color: var(--deep-blue);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.party-highlights-note { margin: 0 0 1rem; color: var(--muted); font-size: 0.95rem; }
+
+/* Callout icons (Font Awesome): blue hourglass for deadlines, yellow triangle for warnings */
+.callout-icon { margin-right: 0.45rem; }
+.callout-icon-deadline { color: var(--ucla-blue); }
+.callout-icon-warning { color: #e6a700; }
+
+/* An icon inside a pill (e.g. the Apple/Google logo in the map pills): sized to the pill's text */
+.pill-icon { height: 0.95em; margin-right: 0.25em; vertical-align: -0.1em; }
+.pill-icon-apple { height: 1.15em; vertical-align: -0.12em; } /* the Apple logo's stem uses part of its height, so its body looks smaller than the G; only the apple is enlarged */
+
+/* PJ Party tier table: Price gets a wider column than Tickets available */
+.tier-col-quantity { width: 22%; }
+.tier-col-price { width: 30%; }
+
+/* FAQ answer links: a row of pills that wraps on narrow screens */
+.faq-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.faq-links a.pill { margin-left: 0; } /* the row's gap handles spacing */
+
+/* Inverse pill: dark, turning light on hover (the opposite of a regular pill) */
+a.pill.pill-inverse { border-color: var(--deep-blue); background: var(--deep-blue); color: var(--snow); }
+a.pill.pill-inverse:hover { border-color: var(--ice-border); background: var(--ice); color: var(--deep-blue); }
+/* White pill: white, turning dark on hover (for light-blue backgrounds such as an open FAQ answer) */
+a.pill.pill-white { background: var(--snow); }
+a.pill.pill-white:hover { border-color: var(--deep-blue); background: var(--deep-blue); color: var(--snow); }
+
+/* Footer: small "Last updated" line under the organization name */
+.footer-updated { display: block; margin-top: 0.4rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: normal; text-transform: none; opacity: 0.75; }
+
+/* Lodge directions: small cards side by side (stacked on phones), each with its map pills */
+.lodge-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.5rem 0 1rem; }
+.lodge-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ice-border);
+  border-top: 4px solid var(--ucla-blue);
+  border-radius: 0.75rem;
+  background: var(--ice);
+}
+.lodge-name { color: var(--ucla-blue); font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1; }
+.lodge-note { color: var(--muted); font-size: 0.9rem; line-height: 1.3; }
+.lodge-maps { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.25rem; } /* pills sit at the bottom so they line up across cards */
+.lodge-maps a.pill { margin-left: 0; }
+@media (max-width: 700px) {
+  .lodge-cards { grid-template-columns: 1fr; }
 }

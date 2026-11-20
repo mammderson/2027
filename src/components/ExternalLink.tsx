@@ -1,15 +1,18 @@
 import type { ReactNode } from 'react'
 
 interface ExternalLinkProps {
-  href: string
+  url: string
   children: ReactNode
   variant?: 'button' | 'inline'
+  className?: string // extra classes, e.g. a button style
+  label?: string // for icon-only links: read by screen readers and shown as a hover tooltip
 }
 
-// An empty href (see content/links.ts) renders a visible "coming soon" placeholder.
-export function ExternalLink({ href, children, variant = 'inline' }: ExternalLinkProps) {  const className = variant === 'button' ? 'button' : undefined
+// An empty url (see content/links.ts) renders a visible "coming soon" placeholder.
+export function ExternalLink({ url, children, variant = 'inline', className: extraClass, label }: ExternalLinkProps) {
+  const className = [variant === 'button' ? 'button' : '', extraClass ?? ''].join(' ').trim() || undefined
 
-  if (!href) {
+  if (!url) {
     return (
       <span className={`${className ?? ''} link-missing`.trim()} title="Link coming soon">
         {children} (link coming soon)
@@ -18,7 +21,7 @@ export function ExternalLink({ href, children, variant = 'inline' }: ExternalLin
   }
 
   return (
-    <a className={className} href={href} target="_blank" rel="noreferrer">
+    <a className={className} href={url} target="_blank" rel="noreferrer" aria-label={label} title={label}>
       {children}
     </a>
   )

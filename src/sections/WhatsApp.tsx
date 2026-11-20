@@ -7,7 +7,7 @@ export function WhatsApp() {
     <Section id="whatsapp" title="WhatsApp Community">
       <p>{whatsapp.intro}</p>
       <p>
-        <ExternalLink href={links.whatsappCommunity} variant="button">Join the community</ExternalLink>
+        <ExternalLink url={links.whatsappCommunity} variant="button">Join the community</ExternalLink>
       </p>
       <p>{whatsapp.groupsIntro}</p>
       <ul className="cards">

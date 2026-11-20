@@ -1,7 +1,7 @@
 import { BulletList } from '../components/BulletList'
-import { ExternalLink } from '../components/ExternalLink'
+import { Pill } from '../components/Pill'
 import { Section } from '../components/Section'
-import { faq, links } from '../content'
+import { deadlines, faq, links } from '../content'
 
 export function Faq() {
   return (
@@ -10,13 +10,25 @@ export function Faq() {
         <details key={item.question}>
           <summary>{item.question}</summary>
           {item.answer && <p>{item.answer}</p>}
-          {item.list && <BulletList items={item.list} />}
+          {item.showDeadlines && (
+            <table>
+              <thead>
+                <tr><th>Item</th><th>Deadline</th></tr>
+              </thead>
+              <tbody>
+                {deadlines.map((d) => (
+                  <tr key={d.item}><td>{d.item}</td><td>{d.detail}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {item.list && <BulletList items={item.list} pillVariant="white" />}
           {item.linkKeys && (
-            <ul>
+            <p className="faq-links">
               {item.linkKeys.map(({ label, key }) => (
-                <li key={key}><ExternalLink href={links[key]}>{label}</ExternalLink></li>
+                <Pill key={key} url={links[key]} variant="white">{label}</Pill>
               ))}
-            </ul>
+            </p>
           )}
           {item.footer && <p><strong>{item.footer}</strong></p>}
         </details>

@@ -6,4 +6,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/',
   plugins: [react()],
+  define: {
+    // The moment the site was built, shown as "Last updated" in the footer. Every build/deploy refreshes it.
+    __LAST_UPDATED__: JSON.stringify(new Date().toISOString()),
+  },
 })

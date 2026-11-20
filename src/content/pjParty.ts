@@ -1,16 +1,24 @@
+import { faChampagneGlasses, faDrumstickBite } from '@fortawesome/free-solid-svg-icons'
+
 export const pjParty = {
   where: 'Limelight Mammoth',
   when: 'Saturday, January 23, 2027, 7PM – 12AM',
-  details: [
-    '3 hours open bar + heavy appetizers, then cash bar at 10:30 PM',
-    "Please plan to Uber to the Limelight if you're not staying at the hotel. It'll make it easier to join the festivities and get home safely after the party.",
+  // Shown as two feature tiles, with the cash bar note underneath
+  highlights: [
+    { icon: faChampagneGlasses, title: '3-hour open bar' },
+    { icon: faDrumstickBite, title: 'Heavy appetizers' },
   ],
-  ticketsNote: 'Tickets are sold on Campus Groups in four tiers of 60 tickets each. Tier 1 opens Nov 21, 2026.',
+  highlightsNote: 'Cash bar from 10:30 PM',
+  uberNote:
+    "Please plan to Uber to the Limelight if you're not staying at the hotel. It'll make it easier to join the festivities and get home safely after the party.",
+  ticketsNote: 'Tickets are sold on Campus Groups in four tiers.',
+  ticketsCallout: 'On sale now until 7PM on Saturday, January 23!',
+  // quantity: number of tickets available in that tier
   tiers: [
-    { name: 'Tier 1', price: 85 },
-    { name: 'Tier 2', price: 95 },
-    { name: 'Tier 3', price: 110 },
-    { name: 'Tier 4', price: 120 },
+    { name: 'Tier 1: FEMBA exclusive', price: 85, quantity: 60 },
+    { name: 'Tier 2: FEMBA exclusive', price: 95, quantity: 60 },
+    { name: 'Tier 3', price: 110, quantity: 80 },
+    { name: 'LAST CALL', price: 120, quantity: 150 },
   ],
   theme: {
     title: 'Theme: PJ Party',

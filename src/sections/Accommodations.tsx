@@ -1,6 +1,7 @@
 import { BulletList } from '../components/BulletList'
 import { Callout } from '../components/Callout'
 import { ExternalLink } from '../components/ExternalLink'
+import { MapPill } from '../components/MapPill'
 import { Section } from '../components/Section'
 import { accommodations as a, links, pricing } from '../content'
 
@@ -10,11 +11,21 @@ export function Accommodations() {
   return (
     <Section id="stay" title="Accommodations">
       <p>
-        <strong>Where:</strong> <ExternalLink href={links.limelight}>{a.where}</ExternalLink>
+        <strong>Where:</strong> {a.where}{' '}
+        <MapPill provider="apple" url={links.limelightAppleMaps} />{' '}
+        <MapPill provider="google" url={links.limelightGoogleMaps} />
         <br />
         <strong>Dates:</strong> {a.dates}
       </p>
       <p>{a.optionalNote}</p>
+
+      <h3>How to book</h3>
+      <p>Room block name: <strong>{a.howToBook.roomBlockName}</strong></p>
+      <p>
+        <ExternalLink url={links.roomBlockBooking} variant="button">Book your room</ExternalLink>
+      </p>
+      <Callout type="deadline">{a.howToBook.note}</Callout>
+      <p>Check-in: {a.checkIn} · Check-out: {a.checkOut}</p>
 
       <h3>Cost</h3>
       <p>
@@ -39,19 +50,16 @@ export function Accommodations() {
       <p>{a.rateNote}</p>
       <p>{a.flexibilityNote}</p>
 
-      <h3>How to book</h3>
-      <p>Room block name: <strong>{a.howToBook.roomBlockName}</strong></p>
-      <p>
-        <ExternalLink href={links.roomBlockBooking} variant="button">Book your room</ExternalLink>
-      </p>
-      <Callout>{a.howToBook.note}</Callout>
-      <p>Check-in: {a.checkIn} · Check-out: {a.checkOut}</p>
-
       <h3>Parking</h3>
       <p>{a.parking.summary}</p>
-      <Callout>{a.parking.warning}</Callout>
+      <Callout type="warning">{a.parking.warning}</Callout>
 
-      <h3>Amenities</h3>
+      <h3 className="heading-with-link">
+        Amenities
+        <span className="heading-link">
+          <ExternalLink url={links.limelightAmenities}>Learn more</ExternalLink>
+        </span>
+      </h3>
       <BulletList items={a.amenities} />
       <h3>Additional items</h3>
       <BulletList items={a.additionalItems} />

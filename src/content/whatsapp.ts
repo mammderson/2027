@@ -6,7 +6,7 @@ export const whatsapp = {
     { name: 'Announcements', description: 'Official event updates and important information' },
     { name: 'Limelight Accommodations', description: 'Hotel-related questions and coordination' },
     {
-      name: 'Saturday Activities',
+      name: 'Activities',
       description: 'Skiing & snowboarding, tubing, hot springs hike, bowling, and more!',
     },
     { name: 'General', description: 'Questions, conversations, and everything in between' },

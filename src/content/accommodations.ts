@@ -1,4 +1,4 @@
-const round2 = (n: number) => Math.round(n * 100) / 100
+const round2 =(n: number) => Math.round(n * 100) / 100
 
 const NIGHTS = 2
 const baseRate = 409
@@ -37,7 +37,7 @@ export const accommodations = {
     'Booking is flexible based on your arrival and departure plans. Most people arrive between Friday morning and Friday afternoon, but feel free to coordinate rides with others as schedules vary. The room block rate is available from Wednesday, January 20 through Sunday, January 24, so you can extend your stay if you like.',
   parking: {
     summary: 'Parking is valet only, at $15/night/car. It includes ski valet and storage.',
-    warning: 'NO SKIS OR SNOWBOARDS ARE ALLOWED IN THE ROOMS.',
+    warning: 'No skis or snowboards are allowed in the rooms.',
   },
   howToBook: {
     roomBlockName: 'FEMBA Mammderson 2027',

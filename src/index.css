@@ -242,7 +242,7 @@ a.pill {  font-size: 0.85rem; font-weight: 600; line-height: 1.4; vertical-align
    Both sides are set because the two margins overlap; the larger one would win. */
 .callout:has(+ .callout) { margin-bottom: 12px; }
 .callout + .callout { margin-top: 12px; }
-/* Same 12px between the last deadline callout and the "See group rates & options" bar */
+/* Same 12px between the last deadline callout and the "Group rates & options" bar */
 .callout:has(+ details.group-rates) { margin-bottom: 12px; }
 .callout + details.group-rates { margin-top: 12px; }
 
@@ -500,16 +500,20 @@ h1, h2, h3, .tagline { text-wrap: balance; }
 }
 .section .subsection-title + h4 { margin-top: 0; } /* first subheading right under a title: the title's own gap is enough */
 
+/* Topic headings (Dinner, Mammoth Lodges, Ikon Pass...) look the same as the h3 topics in Accommodations (How to book, Cost...).
+   They're h4 only because they sit one level deeper, under a subsection title. */
 .section h4 {
   margin: 2rem 0 0.25rem; /* clear gap from the block above, so each subheading starts a new part */
   color: var(--ucla-blue);
-  font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 /* Whatever follows a subheading (paragraph, list, cards, table) sits close to it, so the two read as one unit.
    Without this, the next block's own top margin (about 1rem for paragraphs) sets the gap. */
-.section h4 + * { margin-top: 0.25rem; }
+.section h3 + *, .section h4 + * { margin-top: 0.25rem; }
 
 /* ---------- PJ Party ticket call to action ---------- */
 

@@ -11,7 +11,7 @@
 //   - "Section view": the first time each section reaches the middle of the screen during a visit.
 //   - "Video open" / "Video finished": the promo video player was opened / played to the end.
 //     The ticket button on its end screen shows up as a "Link click" in section "header".
-//   - "Group rates open": the "See group rates & options" box was opened (Day Activities).
+//   - "Group rates close": the "group rates & options" box was collapsed (Day Activities; it starts expanded).
 //     "Group rates tab": a tab was picked (tab = lift, rentals, lessons or kids).
 //     "Group rates link": someone arrived through a #group-rates or #group-rates-<tab> link (link = that hash).
 //   - "Swag image zoom": the strap wrap teaser image was opened full size.

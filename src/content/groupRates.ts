@@ -1,5 +1,5 @@
 // Mammoth group rates for 2026/27, shown under "Discounted rates" in Day Activities > Skiing & Snowboarding
-// (a "See group rates & options" toggle with Lift tickets / Rentals / Lessons / Kids tabs).
+// (a "Group rates & options" toggle with Lift tickets / Rentals / Lessons / Kids tabs).
 //
 // Trimmed for our group from Mammoth's three sheets (keep the PDFs if you need to re-check):
 //   - Lift tickets: "T3 - Activity Only Groups Regular Season 2627.pdf"
@@ -40,7 +40,7 @@ export interface RateTab {
 }
 
 export const groupRates = {
-  toggleLabel: 'See group rates & options',
+  toggleLabel: 'Group rates & options',
   tabs: [
     {
       id: 'lift',

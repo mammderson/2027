@@ -53,8 +53,10 @@ export function GroupRates() {
       ref={detailsRef}
       id={LINK_ID}
       className="group-rates"
+      open // expanded by default; the bar still collapses it
       onToggle={(toggleEvent) => {
-        if (toggleEvent.currentTarget.open) track('Group rates open')
+        // Only closing is tracked: the box starts open, and the browser also fires "toggle" for that first open
+        if (!toggleEvent.currentTarget.open) track('Group rates close')
       }}
     >
       <summary>{groupRates.toggleLabel}</summary>

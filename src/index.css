@@ -307,9 +307,8 @@ h1, h2, h3, .tagline { text-wrap: balance; }
 .pine-front-left { right: -34%; }
 .pine-front-right { left: -2%; width: 52%; }
 .pine-back { width: 28%; height: 42%; }
-.pine-back-left { right: -2%; z-index: 6; bottom: 30px } /* small tree sits closest to the left bear, covering the lower-right of its pajamas */
+.pine-back-left { right: -2%; z-index: 6; bottom: 20px } /* small tree sits closest to the left bear, covering the lower-right of its pajamas */
 .pine-back-right { left: -30%; bottom: -6px; }
-
 /* Phones: give the bears their own room under the intro text, size them by screen width, and keep faces above the ridge */
 @media (max-width: 700px) {
   .hero { padding-bottom: 12rem; }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Favicon only: m-logo.svg placed so its flat base ends exactly on a pixel edge at 16px and 32px (y 6 to 26),
+       which keeps the bottom row from rendering as a faint line. Regenerate if m-logo.svg changes. -->
+  <svg x="1.41" y="6" width="29.19" height="20" viewBox="60 128.12 280 191.88">
+
+  <defs>
+    <path id="left" d="M60,320 L140.95,160.4 Q150,142.6 159.05,160.4 L240,320 Z"/>
+    <path id="right" d="M160,320 L251.1,136.9 Q260,119 267.4,137.6 L340,320 Z"/>
+    <clipPath id="overlap"><use href="#right"/></clipPath>
+  </defs>
+  <use href="#left" fill="#FFD100"/>
+  <use href="#right" fill="#2774AE"/>
+  <use href="#left" fill="#003B5C" clip-path="url(#overlap)"/>
+  </svg>
+</svg>

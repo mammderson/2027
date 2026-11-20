@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <!-- M as two mountain peaks with a central valley (no background) -->
-  <polyline points="40,150 75,72 100,116 125,72 160,150" fill="none" stroke="#2774AE" stroke-width="22" stroke-linejoin="miter" stroke-miterlimit="10"/>
-  <!-- Gold base line -->
-  <rect x="30" y="164" width="140" height="8" fill="#FFD100"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 119 280 201" width="840" height="603" role="img" aria-label="Mammderson logo">
+  <defs>
+    <path id="left" d="M60,320 L140.95,160.4 Q150,142.6 159.05,160.4 L240,320 Z"/>
+    <path id="right" d="M160,320 L251.1,136.9 Q260,119 267.4,137.6 L340,320 Z"/>
+    <clipPath id="overlap"><use href="#right"/></clipPath>
+  </defs>
+  <use href="#left" fill="#FFD100"/>
+  <use href="#right" fill="#2774AE"/>
+  <use href="#left" fill="#003B5C" clip-path="url(#overlap)"/>
 </svg>

@@ -5,6 +5,7 @@
   --ice-border: #cfe1ef;
   --ucla-blue: #2774ae;
   --deep-blue: #003b5c; /* darker UCLA blue, reads as alpine night sky */
+  --gold: #ffd100; /* UCLA gold */
   --text: #0f2233;
   --muted: #566a7c;
   /* mammothmountain.com uses Trade Gothic Next (body) and Trade Gothic Next Condensed (headings).
@@ -253,10 +254,11 @@ summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
     gap: 0.6rem;
     height: 2.5rem; /* matches the phone PJ Party pill (.nav-tickets-mobile) */
     padding: 0 0.9rem;
-    border: none;
+    /* Outline style, so it reads as secondary next to the solid PJ Party pill instead of a mismatched second blue */
+    border: 2px solid var(--ucla-blue);
     border-radius: 0.5rem;
-    background: var(--ucla-blue);
-    color: var(--snow);
+    background: var(--snow);
+    color: var(--ucla-blue);
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 700;
@@ -466,6 +468,14 @@ h1, h2, h3, .tagline { text-wrap: balance; }
   .nav a.nav-tickets-mobile { display: inline-flex !important; align-items: center; height: 2.5rem; margin-left: auto; padding: 0 0.9rem; }
   /* Match the other tiles in the open menu: same shape and padding (the pill's own smaller padding would win otherwise) */
   .nav li a.nav-tickets { display: flex; padding: 0.7rem 0.5rem; border-radius: 0.5rem; }
+  /* In the open menu, a dark tile looks like "the page you're on", so PJ Party is gold instead (same sheen) */
+  .nav li a.nav-tickets.nav-shine {
+    background-image:
+      linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.7) 50%, transparent 65%),
+      linear-gradient(135deg, var(--gold), #f5b800);
+    color: var(--deep-blue);
+  }
+  .nav li a.nav-tickets.nav-shine:hover { background: #f5b800; color: var(--deep-blue); }
 }
 /* Very small phones: drop the PJ Party pill so the top row doesn't wrap. PJ Party is still in the Menu. */
 @media (max-width: 359px) {

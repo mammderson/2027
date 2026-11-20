@@ -46,7 +46,8 @@ export function Day() {
         <p>{s.ikon.body}</p>
       </div>
 
-      <div className="subsection">
+      {/* id is the target of the FAQ link ("see Day Activities > Alternative Activities") */}
+      <div id="alternative-activities" className="subsection">
         <h3 className="subsection-title">{s.alternatives.title}</h3>
         <p>{s.alternatives.intro}</p>
         <div className="activity-cards">

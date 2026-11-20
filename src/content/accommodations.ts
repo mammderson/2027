@@ -43,8 +43,8 @@ export const accommodations = {
     roomBlockName: 'FEMBA Mammderson 2027',
     note: 'Our promotional price expires on January 4, 2027, so book early! Booking is still available after January 4 but at list price.',
   },
-  checkIn: '4:00 PM',
-  checkOut: '11:00 AM',
+  checkIn: '4:00PM',
+  checkOut: '11:00AM',
   amenities: [
     'Just steps away from the Village, Gondola and Mammoth Mountain Rentals',
     'Breakfast included (7AM to 10AM)',

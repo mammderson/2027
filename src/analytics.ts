@@ -5,7 +5,9 @@
 //   - Unique devices: each browser gets a random ID (saved in localStorage) that Umami uses as its "distinct ID",
 //     so the same phone counts as one visitor across days. Clearing browser data or a private window gives a new ID.
 //   - "Link click": every link to another site or app, with the link name, button text and the section it was in.
-//   - "Nav click": every link that jumps within the page (nav bar, logo), with where it goes.
+//     Slack contact names (Still Have Questions?) are named "Slack: <member ID>", e.g. "Slack: U0B5RKF6VV1" (see event.ts for who's who).
+//   - "Nav click": every link that jumps within the page (nav bar, logo, FAQ "see ..." links), with where it goes
+//     and the section it was clicked in (nav = the nav bar, faq = an FAQ answer).
 //   - "Section view": the first time each section reaches the middle of the screen during a visit.
 //
 // Excluding your own devices: open the site with ?notrack (e.g. mammderson.github.io/?notrack) once in each
@@ -87,10 +89,18 @@ function loadUmami() {
   document.head.appendChild(script)
 }
 
-// Reverse lookup so reports show "campusGroupsPjParty" instead of a long URL
-function linkName(url: string): string {
+// Name shown in reports instead of a long URL: the link's data-track attribute if it has one
+// (e.g. Slack profile links: "Slack: U0B5RKF6VV1"), otherwise its key in links.ts (e.g. "campusGroupsPjParty")
+function linkName(link: HTMLAnchorElement, url: string): string {
+  if (link.dataset.track) return link.dataset.track
   const match = Object.entries(links).find(([, linkUrl]) => linkUrl === url)
   return match ? match[0] : url
+}
+
+// Innermost tracked area an element sits in: the PJ Party subsection, a section, the nav or the hero
+function areaName(element: Element): string {
+  const area = element.closest('#pj-party, section[id], nav, header')
+  return area?.id || area?.tagName.toLowerCase() || 'other'
 }
 
 // One listener for the whole page, so new buttons and links are tracked without tagging each one
@@ -103,14 +113,14 @@ function trackClicks() {
     const text = (link.textContent ?? '').trim()
 
     if (href.startsWith('#')) {
-      track('Nav click', { to: href.slice(1) || 'top', text })
+      track('Nav click', { to: href.slice(1) || 'top', text, section: areaName(link) })
       return
     }
 
-    // Innermost tracked area the link sits in: the PJ Party subsection, a section, the nav or the hero
-    const area = link.closest('#pj-party, section[id], nav, header')
-    const section = area?.id || area?.tagName.toLowerCase() || 'other'
-    track('Link click', { link: linkName(href), text, section })
+    // A data-track name replaces the visible text too, so e.g. a person's name on a Slack link is never recorded
+    const data: EventData = { link: linkName(link, href), section: areaName(link) }
+    if (!link.dataset.track) data.text = text
+    track('Link click', data)
   })
 }
 

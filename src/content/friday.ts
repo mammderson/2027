@@ -4,13 +4,13 @@ export const friday = {
   options: [
     {
       title: 'Après at Canyon Lodge',
-      body: 'Canyon Lodge hosts an Après Ski party starting at 3:00 PM. Swing by for live music, drinks, and mountain views.',
+      body: 'Canyon Lodge hosts an Après Ski party starting at 3:00PM. Swing by for live music, drinks, and mountain views.',
       warning:
-        'The Village Gondola closes at 5:00 PM, so plan your ride back via shuttle to the Village accordingly.',
+        'The Village Gondola closes at 5:00PM, so plan your ride back via shuttle to the Village accordingly.',
     },
     {
       title: 'Friday Happy Hour at Limelight',
-      body: 'The Après Menu will be served from 3:00–6:00 PM, followed by Dinner from 4:00–10:00 PM.',
+      body: 'The Après Menu will be served from 3:00–6:00PM, followed by Dinner from 4:00–10:00PM.',
     },
     {
       title: 'Hot Tub & Heated Swimming Pool',

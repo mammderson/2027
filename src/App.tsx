@@ -3,6 +3,7 @@ import { trackSectionViews } from './analytics'
 import { Bears } from './components/Bears'
 import { Countdown } from './components/Countdown'
 import { ExternalLink } from './components/ExternalLink'
+import { FooterTitle } from './components/FooterTitle'
 import { Nav } from './components/Nav'
 import { Ridge } from './components/Ridge'
 import { Snowfall } from './components/Snowfall'
@@ -67,10 +68,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        {/* One line with a "|" on wide screens; on phones the separator hides and each part gets its own line */}
-        <span className="footer-part">{event.organization}</span>
-        <span className="footer-separator" aria-hidden="true"> | </span>
-        <span className="footer-part">{event.name}</span>
+        <FooterTitle organization={event.organization} eventName={event.name} />
         <span className="footer-updated">Last updated {lastUpdated}</span>
       </footer>
     </>

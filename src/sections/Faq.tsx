@@ -2,6 +2,21 @@ import { BulletList } from '../components/BulletList'
 import { Pill } from '../components/Pill'
 import { Section } from '../components/Section'
 import { deadlines, faq, links } from '../content'
+import type { FaqItem } from '../content/faq'
+
+// The answer text, with "{link}" swapped for the item's inline link when it has one
+function Answer({ answer, inlineLink }: Pick<FaqItem, 'answer' | 'inlineLink'>) {
+  if (!answer) return null
+  if (!inlineLink) return <p>{answer}</p>
+  const [before, after] = answer.split('{link}')
+  return (
+    <p>
+      {before}
+      <a className="text-link" href={inlineLink.href}>{inlineLink.label}</a>
+      {after}
+    </p>
+  )
+}
 
 export function Faq() {
   return (
@@ -9,7 +24,7 @@ export function Faq() {
       {faq.map((item) => (
         <details key={item.question}>
           <summary>{item.question}</summary>
-          {item.answer && <p>{item.answer}</p>}
+          <Answer answer={item.answer} inlineLink={item.inlineLink} />
           {item.showDeadlines && (
             <table>
               <thead>

@@ -290,7 +290,7 @@ summary { cursor: pointer; font-weight: 600; color: var(--deep-blue); }
 }
 
 /* Avoid orphan words: balance short display text, "pretty" for paragraphs */
-p, li, summary, td { text-wrap: pretty; }
+p, li, summary, td, h4 { text-wrap: pretty; }
 h1, h2, h3, .tagline { text-wrap: balance; }
 
 /* PJ party bears (cut from the flyer) peeking out from behind the snowy mountains */
@@ -436,6 +436,19 @@ h1, h2, h3, .tagline { text-wrap: balance; }
   background: linear-gradient(135deg, var(--ucla-blue), var(--ucla-blue));
   box-shadow: 0 10px 24px rgba(39, 116, 174, 0.45);
 }
+/* Links inside sentences (Slack contact names, FAQ "see ..." links): bold blue, no underline, lighter blue on hover */
+a.text-link {
+  color: var(--ucla-blue);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+a.text-link:hover { color: #8bb8e8; } /* UCLA "Lighter Blue" */
+
+/* Phones: the button was almost, but not quite, full width; stretch it to line up with the cards below */
+@media (max-width: 700px) {
+  .button.button-tickets.on-light { display: block; text-align: center; }
+}
 
 /* Nav: the PJ Party link is a filled pill */
 .nav a.nav-tickets {
@@ -557,10 +570,9 @@ a.pill.pill-white:hover { border-color: var(--deep-blue); background: var(--deep
 
 /* Footer: small "Last updated" line under the organization name */
 .footer-part { white-space: nowrap; } /* "MAMMDERSON 2027" never splits, so "2027" can't end up alone */
-@media (max-width: 560px) {
-  .footer-separator { display: none; }
-  .footer-part { display: block; }
-}
+/* Set by FooterTitle when the event name wraps: drop the "·" and give each part its own line */
+.footer-title.stacked .footer-separator { display: none; }
+.footer-title.stacked .footer-part { display: block; }
 .footer-updated { display: block; margin-top: 0.4rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: normal; text-transform: none; opacity: 0.75; }
 
 /* Lodge directions: small cards side by side (stacked on phones), each with its map pills */

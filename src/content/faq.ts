@@ -5,6 +5,7 @@ import type { links } from './links'
 export interface FaqItem {
   question: string
   answer?: string
+  inlineLink?: { label: string; href: string } // replaces "{link}" in the answer with a bold blue link (same page: href '#section-id')
   list?: BulletItem[]
   footer?: string
   linkKeys?: { label: string; key: keyof typeof links }[] // shown as white pills
@@ -74,11 +75,12 @@ export const faq: FaqItem[] = [
   {
     question: 'Do I have to know how to ski?',
     answer:
-      'No! Skiing is totally optional, but highly recommended if you want to experience the full Mammoth magic. Classes are also available. There are plenty of other fun activities in Mammoth too, see Day Activities > Alternative Activities.',
+      'No! Skiing is totally optional, but highly recommended if you want to experience the full Mammoth magic. Classes are also available. There are plenty of other fun activities in Mammoth too, see {link}.',
+    inlineLink: { label: 'Day Activities > Alternative Activities', href: '#alternative-activities' },
   },
   {
     question: 'Ticket transfers, waitlist and room block space',
     answer: "Can't make it any more? Please use the form below to coordinate.",
-    linkKeys: [{ label: 'Mammderson 2027 PJ Party Ticket Transfer, Waitlist and Room Block Space', key: 'ticketTransferForm' }],
+    linkKeys: [{ label: 'Ticket Transfer, Waitlist, and Room Block Space', key: 'ticketTransferForm' }],
   },
 ]

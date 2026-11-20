@@ -6,8 +6,13 @@ export const event = {
   location: 'Mammoth Mountain',
   countdownTarget: '2027-01-23T19:00:00-08:00', // PJ Party start: Saturday 7PM, Pacific time
   intro:'Pack your ski fits and party PJs. Get ready for an unforgettable takeover at Mammoth Mountain.',
-  contacts: ['Jayden Chan', 'Anne Li', 'Jess Timmons'],
-  organization: 'UCLA Anderson FEMBA Council'
+  // slack: the person's Slack profile link (open their profile in Slack > Copy link). Empty = name shown as plain text.
+  contacts: [
+    { name: 'Jayden Chan', slack: 'https://ucla.enterprise.slack.com/team/U098XU0F8QH' },
+    { name: 'Anne Li', slack: 'https://ucla.enterprise.slack.com/team/U07GZK2LTC1' },
+    { name: 'Jess Timmons', slack: 'https://ucla.enterprise.slack.com/team/U0B5RKF6VV1' },
+  ],
+  organization: 'UCLA Anderson FEMBA Council Social Affairs'
 }
 
 export interface Deadline {

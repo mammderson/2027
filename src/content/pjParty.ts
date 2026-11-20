@@ -8,7 +8,7 @@ export const pjParty = {
     { icon: faChampagneGlasses, title: '3-hour open bar' },
     { icon: faDrumstickBite, title: 'Heavy appetizers' },
   ],
-  highlightsNote: 'Cash bar from 10:30 PM',
+  highlightsNote: 'Cash bar from 10:30PM',
   uberNote:
     "Please plan to Uber to the Limelight if you're not staying at the hotel. It'll make it easier to join the festivities and get home safely after the party.",
   ticketsNote: 'Tickets are sold on Campus Groups in four tiers.',

@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react'
+import { faVideo } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { track } from '../analytics'
 import { links, promoVideo } from '../content'
 import { ExternalLink } from './ExternalLink'
@@ -51,6 +53,12 @@ export function PromoVideo({ placement, onLight = false }: PromoVideoProps) {
   return (
     <>
       <button type="button" className={`button button-video${onLight ? ' on-light' : ''}`} onClick={open}>
+        {/* Hero only: a video camera badge on a gold circle at the top-right corner */}
+        {!onLight && (
+          <span className="button-video-badge" aria-hidden="true">
+            <FontAwesomeIcon icon={faVideo} />
+          </span>
+        )}
         <span className="button-video-play" aria-hidden="true">▶</span> {promoVideo.buttonLabel}
       </button>
 

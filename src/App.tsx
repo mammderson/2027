@@ -67,7 +67,10 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        {event.organization} | {event.name}
+        {/* One line with a "|" on wide screens; on phones the separator hides and each part gets its own line */}
+        <span className="footer-part">{event.organization}</span>
+        <span className="footer-separator" aria-hidden="true"> | </span>
+        <span className="footer-part">{event.name}</span>
         <span className="footer-updated">Last updated {lastUpdated}</span>
       </footer>
     </>

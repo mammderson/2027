@@ -549,6 +549,11 @@ a.pill.pill-white { background: var(--snow); }
 a.pill.pill-white:hover { border-color: var(--deep-blue); background: var(--deep-blue); color: var(--snow); }
 
 /* Footer: small "Last updated" line under the organization name */
+.footer-part { white-space: nowrap; } /* "MAMMDERSON 2027" never splits, so "2027" can't end up alone */
+@media (max-width: 560px) {
+  .footer-separator { display: none; }
+  .footer-part { display: block; }
+}
 .footer-updated { display: block; margin-top: 0.4rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: normal; text-transform: none; opacity: 0.75; }
 
 /* Lodge directions: small cards side by side (stacked on phones), each with its map pills */

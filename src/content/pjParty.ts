@@ -15,10 +15,10 @@ export const pjParty = {
   ticketsCallout: 'On sale now until 7PM on Saturday, January 23!',
   // quantity: number of tickets available in that tier
   tiers: [
-    { name: 'Tier 1: FEMBA exclusive', price: 85, quantity: 60 },
-    { name: 'Tier 2: FEMBA exclusive', price: 95, quantity: 60 },
-    { name: 'Tier 3', price: 110, quantity: 80 },
-    { name: 'LAST CALL', price: 120, quantity: 150 },
+    { name: 'Tier 1: FEMBA exclusive', price: 85, quantity: '60' },
+    { name: 'Tier 2: FEMBA exclusive', price: 95, quantity: '60' },
+    { name: 'Tier 3', price: 110, quantity: '80' },
+    { name: 'Tier 4: Last Call!', price: 120, quantity: '100+' },
   ],
   theme: {
     title: 'Theme: PJ Party',

@@ -9,6 +9,9 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#003b5c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Keep the site (and the organizers' names) out of search results. The link is shared on Slack and WhatsApp.
+         Don't also block crawlers in a robots.txt: they'd never load the page, so they'd never see this tag. -->
+    <meta name="robots" content="noindex, nofollow" />
     <title>MAMMDERSON 2027</title>
     <meta name="description" content="MAMMDERSON 2027: FEMBA weekend at Mammoth Mountain, January 22–24, 2027." />
 

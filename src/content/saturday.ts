@@ -1,4 +1,12 @@
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { faBowlingBall, faHotTubPerson, faPersonHiking, faSleigh, faSpa } from '@fortawesome/free-solid-svg-icons'
 import type { links } from './links'
+
+interface Activity {
+  name: string
+  icon: IconDefinition
+  linkKey: keyof typeof links
+}
 
 interface Lodge {
   name: string
@@ -27,7 +35,7 @@ export const saturday = {
     body: 'Our group can book lift tickets, rentals and lessons at a discounted rate. Call 1-800-MAMMOTH and share the UCLA Anderson booking ID.',
     phone: '1-800-MAMMOTH (1-800-626-6684)',
     phoneUrl: 'tel:+18006266684', // opens the dialer on phones
-    bookingId: 'TBD', // UCLA Anderson booking ID (not issued yet)
+    bookingId: 'Coming Soon! Check back Nov 30', // UCLA Anderson booking ID (not issued yet)
     deadline: 'Call before January 21 to get the group discount.',
     rules: [
       'Mammoth will NOT allow same-day group purchases. After January 21, activities and rentals may be purchased at retail price (no discount).',
@@ -37,11 +45,18 @@ export const saturday = {
   },
   alternatives: {
     title: 'Alternative Activities',
-    // Each of these is shown in bold wherever it appears in the paragraphs below.
-    highlights: ['snow tubing', 'hiking', 'natural hot springs', 'bowling', 'spa days'],
-    paragraphs: [
+    // Shown as cards (icon, name, Learn more pill) after the first paragraph
+    activities: [
+      { name: 'Snow tubing', icon: faSleigh, linkKey: 'snowTubing' },
+      { name: 'Hiking', icon: faPersonHiking, linkKey: 'winterHiking' },
+      { name: 'Hot springs', icon: faHotTubPerson, linkKey: 'hotSprings' },
+      { name: 'Bowling', icon: faBowlingBall, linkKey: 'bowling' },
+      { name: 'Spa days', icon: faSpa, linkKey: 'spas' },
+    ] as Activity[],
+    intro:
       'Not hitting the slopes? No problem! There are plenty of other ways to enjoy Mammoth, from snow tubing and hiking to natural hot springs to bowling, spa days, and more.',
-      "We'll share high-level information and ideas for alternative activities, but planning and coordination will be self-service. Use the WhatsApp community to connect with fellow attendees, organize groups, and make your own plans.",
-    ],
+    // Shown after the cards. {whatsapp} is replaced with a "WhatsApp community" link pill.
+    planning:
+      "We'll share high-level information and ideas for alternative activities, but planning and coordination will be self-service. Use the {whatsapp} to connect with fellow attendees, organize groups, and make your own plans.",
   },
 }

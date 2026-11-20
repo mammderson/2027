@@ -5,11 +5,13 @@ import { Section } from '../components/Section'
 import { links, swag } from '../content'
 
 export function Swag() {
+  // Split the body around its {whatsapp} placeholder so the link pill can sit inline
+  const [beforeWhatsApp, afterWhatsApp] = swag.body.split('{whatsapp}')
+
   return (
     <Section id="swag" title="Swag">
       <p>
-        {swag.body}{' '}
-        <Pill url={links.whatsappCommunity}>Join</Pill>
+        {beforeWhatsApp}<Pill url={links.whatsappCommunity}>WhatsApp Community</Pill>{afterWhatsApp}
       </p>
       {/* <Callout type="deadline">{swag.preOrderDeadline}</Callout> */}
     </Section>

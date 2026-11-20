@@ -21,4 +21,10 @@ export const links = {
   roadConditions: 'https://www.mammothmountain.com/on-the-mountain/road-conditions',
   ticketTransferForm: 'https://docs.google.com/spreadsheets/d/1uf5cOn-5MbvAfWkSK0Q5irmxgvvVDKzPN_DKjedt7LY/edit?gid=0#gid=0',
   merchPreOrder: '',
+  // Alternative activities (Day Activities)
+  snowTubing: 'https://www.mammothmountain.com/things-to-do/activities/tube-park',
+  bowling: 'https://www.mammothrocknbowl.com',
+  hotSprings: 'https://brittsbellavita.com/natural-hot-springs-mammoth-lakes/',
+  winterHiking: 'https://www.visitmammoth.com/blogs/8-places-winter-hiking-mammoth-lakes/',
+  spas: 'https://www.visitmammoth.com/things-to-do/spas-fitness/',
 }

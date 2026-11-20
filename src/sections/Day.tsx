@@ -1,17 +1,16 @@
 import { BulletList } from '../components/BulletList'
 import { Callout } from '../components/Callout'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MapPill } from '../components/MapPill'
+import { Pill } from '../components/Pill'
 import { Section } from '../components/Section'
 import { links, saturday as s } from '../content'
 
-// Wraps each highlight term found in `text` in <strong>.
-function boldTerms(text: string, terms: string[]) {
-  const pattern = new RegExp(`(${terms.join('|')})`, 'g')
-  return text.split(pattern).map((part, i) => (terms.includes(part) ? <strong key={i}>{part}</strong> : part))
-}
-
 // Saturday daytime: skiing/snowboarding and alternative activities.
 export function Day() {
+  // Split the planning text around its {whatsapp} placeholder so the link pill can sit inline
+  const [beforeWhatsApp, afterWhatsApp] = s.alternatives.planning.split('{whatsapp}')
+
   return (
     <Section id="day" title="Day Activities">
       <p className="section-intro">{s.intro}</p>
@@ -49,7 +48,17 @@ export function Day() {
 
       <div className="subsection">
         <h3 className="subsection-title">{s.alternatives.title}</h3>
-        {s.alternatives.paragraphs.map((p) => <p key={p}>{boldTerms(p, s.alternatives.highlights)}</p>)}
+        <p>{s.alternatives.intro}</p>
+        <div className="activity-cards">
+          {s.alternatives.activities.map((activity) => (
+            <div key={activity.name} className="activity-card">
+              <FontAwesomeIcon icon={activity.icon} className="activity-icon" />
+              <span className="activity-name">{activity.name}</span>
+              <Pill url={links[activity.linkKey]} variant="white">Learn more</Pill>
+            </div>
+          ))}
+        </div>
+        <p>{beforeWhatsApp}<Pill url={links.whatsappCommunity}>WhatsApp community</Pill>{afterWhatsApp}</p>
       </div>
     </Section>
   )

@@ -10,8 +10,11 @@
 //     and the section it was clicked in (nav = the nav bar, faq = an FAQ answer).
 //   - "Section view": the first time each section reaches the middle of the screen during a visit.
 //   - "Video open" / "Video finished": the promo video player was opened / played to the end.
-//   - "Swag image zoom": the strap wrap teaser image was opened full size.
 //     The ticket button on its end screen shows up as a "Link click" in section "header".
+//   - "Group rates open": the "See group rates & options" box was opened (Day Activities).
+//     "Group rates tab": a tab was picked (tab = lift, rentals, lessons or kids).
+//     "Group rates link": someone arrived through a #group-rates or #group-rates-<tab> link (link = that hash).
+//   - "Swag image zoom": the strap wrap teaser image was opened full size.
 //
 // Excluding your own devices: open the site with ?notrack (e.g. mammderson.github.io/?notrack) once in each
 // browser you use. ?notrack=off turns tracking back on. It sets Umami's own "umami.disabled" flag.

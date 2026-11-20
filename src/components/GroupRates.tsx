@@ -121,7 +121,8 @@ function RatesTable({ table }: { table: RateTable }) {
       </caption>
       <thead>
         <tr>
-          <td aria-hidden="true" />
+          {/* What the rows are, e.g. "Days" or "Lesson" */}
+          <th scope="col">{table.columns[0]}</th>
           {table.columns.slice(1).map((column) => {
             const [name, detail] = column.split('|') // e.g. 'Adult|23–64'
             return (

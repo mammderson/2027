@@ -50,7 +50,7 @@ export const groupRates = {
       tables: [
         {
           title: 'Lift tickets',
-          columns: ['', 'Adult|23–64', 'Young adult|13–22'],
+          columns: ['Days', 'Adult|23–64', 'Young adult|13–22'],
           rows: [
             ['2 of 4 days', '$290', '$238'],
             ['3 of 5 days', '$386', '$317'],
@@ -72,7 +72,7 @@ export const groupRates = {
         {
           title: 'Package',
           note: 'Skis or board, boots, and poles or bindings',
-          columns: ['', 'Standard', 'Performance', 'Demo'],
+          columns: ['Days', 'Standard', 'Performance', 'Demo'],
           rows: [
             ['2‑day', '$88', '$101', '$127'],
             ['3‑day', '$124', '$143', '$180'],
@@ -83,7 +83,7 @@ export const groupRates = {
         {
           title: 'Skis or board only',
           note: 'No boots or poles',
-          columns: ['', 'Standard', 'Performance', 'Demo'],
+          columns: ['Days', 'Standard', 'Performance', 'Demo'],
           rows: [
             ['2‑day', '$76', '$90', '$102'],
             ['3‑day', '$108', '$127', '$144'],
@@ -93,7 +93,7 @@ export const groupRates = {
         },
         {
           title: 'Helmet add-on (highly recommended for safety)',
-          columns: ['', 'Helmet'],
+          columns: ['Days', 'Helmet'],
           rows: [
             ['2‑day', '$34'],
             ['3‑day', '$51'],
@@ -121,7 +121,7 @@ export const groupRates = {
         {
           title: 'Adult lessons',
           note: 'Ages 13 and up. Kids lessons are in the Kids tab',
-          columns: ['', 'Price'],
+          columns: ['Lesson', 'Price'],
           rows: [
             ['First-timer PM lesson + beginner lift: 2 hours (1–3PM)', '$149'],
             ['Discovery lesson: beginners, 4 hours (10AM–12PM & 1–3PM)', '$187'],
@@ -131,7 +131,7 @@ export const groupRates = {
         {
           title: 'Add-ons with an adult lesson',
           note: 'Ages 13 and up',
-          columns: ['', 'Price'],
+          columns: ['Add-on', 'Price'],
           rows: [
             ['Full-access lift ticket', '$111'],
             ['Full-day standard rental', '$43'],
@@ -153,7 +153,7 @@ export const groupRates = {
         {
           title: 'Lift tickets',
           note: 'Age 4 and under: free',
-          columns: ['', 'Child|5–12'],
+          columns: ['Days', 'Child|5–12'],
           rows: [
             ['2 of 4 days', '$116'],
             ['3 of 5 days', '$155'],
@@ -165,7 +165,7 @@ export const groupRates = {
         {
           title: 'Rental package (12 and under)',
           note: 'Skis or board, boots, and poles or bindings',
-          columns: ['', 'Standard', 'Demo'],
+          columns: ['Days', 'Standard', 'Demo'],
           rows: [
             ['2‑day', '$61', '$89'],
             ['3‑day', '$87', '$126'],
@@ -176,7 +176,7 @@ export const groupRates = {
         {
           title: 'Skis or board only (12 and under)',
           note: 'No boots or poles',
-          columns: ['', 'Standard', 'Demo'],
+          columns: ['Days', 'Standard', 'Demo'],
           rows: [
             ['2‑day', '$54', '$71'],
             ['3‑day', '$76', '$101'],
@@ -186,7 +186,7 @@ export const groupRates = {
         },
         {
           title: 'Helmet add-on (12 and under, highly recommended for safety)',
-          columns: ['', 'Helmet'],
+          columns: ['Days', 'Helmet'],
           rows: [
             ['2‑day', '$17'],
             ['3‑day', '$25.50'],
@@ -197,7 +197,7 @@ export const groupRates = {
         {
           title: 'Lessons, ages 8–14 (Adventurers)',
           note: 'Per day. Main, Canyon or Eagle Lodge',
-          columns: ['', 'Price'],
+          columns: ['Lesson', 'Price'],
           rows: [
             ['First-timer PM lesson + beginner lift: 2 hours (1–3PM)', '$149'],
             ['Full day: 4-hour lesson + 1-hour lunch (10AM–3PM)', '$276'],
@@ -206,7 +206,7 @@ export const groupRates = {
         {
           title: 'Lessons, ages 5–7 (Explorers)',
           note: 'Per day. Main, Canyon or Eagle Lodge',
-          columns: ['', 'Price'],
+          columns: ['Lesson', 'Price'],
           rows: [
             ['First-timer PM lesson + beginner lift: 2 hours (1–3PM)', '$149'],
             ['Full day: 4-hour lesson + 1-hour lunch (10AM–3PM)', '$276'],
@@ -215,7 +215,7 @@ export const groupRates = {
         {
           title: 'Lessons, ages 3–4 (Pioneers)',
           note: 'Per day, beginner lift included. Main or Canyon Lodge (ski or snowboard), Eagle Lodge (ski only)',
-          columns: ['', 'Price'],
+          columns: ['Lesson', 'Price'],
           rows: [
             ['AM lesson: 2 hours (10AM–12PM)', '$208'],
             ['PM lesson: 2 hours (1–3PM)', '$191'],
@@ -225,7 +225,7 @@ export const groupRates = {
         {
           title: 'Add-ons with a kids lesson',
           note: 'Ages 3–14',
-          columns: ['', 'Price'],
+          columns: ['Add-on', 'Price'],
           rows: [
             ['Full-access lift ticket', '$43'],
             ['Full-day rental', '$34'],

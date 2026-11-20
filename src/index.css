@@ -339,9 +339,8 @@ details.group-rates[open] > summary::after { transform: rotate(180deg); }
 .group-rates-intro, .group-rates-fees { font-size: 0.9rem; color: var(--muted); margin: 0.5rem 0; }
 .rates-table { margin: 0.5rem 0 1rem; font-size: 0.95rem; }
 .rates-table th, .rates-table td { padding: 0.45rem 0.7rem; }
-.rates-table thead th { font-weight: 700; vertical-align: bottom; }
+.rates-table thead th { font-weight: 700; vertical-align: top; } /* "Days" lines up with "Adult", not with the age under it */
 .rates-table caption { caption-side: top; text-align: left; padding: 0 0 0.35rem; font-weight: 700; color: var(--deep-blue); }
-.rates-table thead td { background: var(--deep-blue); } /* empty corner cell, same as the header row */
 .rates-table-note { display: block; font-weight: 400; font-size: 0.8rem; opacity: 0.85; }
 .rates-table caption .rates-table-note { color: var(--muted); opacity: 1; }
 .rates-table tbody th { font-weight: 500; background: transparent; color: var(--text); } /* row labels take the row's stripe */

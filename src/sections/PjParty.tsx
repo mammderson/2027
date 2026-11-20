@@ -24,7 +24,7 @@ export function PjParty() {
   return (
     <div id="pj-party" className="subsection">
       <h3 className="subsection-title">
-        Saturday Night: PJ Party! <DiscoBall />
+        Saturday Night: <span className="title-gold">PJ Party!</span> <DiscoBall />
       </h3>
       <p>
         <strong>Where:</strong> {p.where}{' '}

@@ -1,5 +1,5 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { faBowlingBall, faHotTubPerson, faPersonHiking, faSleigh, faSpa } from '@fortawesome/free-solid-svg-icons'
+import { faBowlingBall, faHotTubPerson, faLifeRing, faPersonHiking, faSpa } from '@fortawesome/free-solid-svg-icons'
 import type { links } from './links'
 
 interface Activity {
@@ -47,11 +47,11 @@ export const saturday = {
     title: 'Alternative Activities',
     // Shown as cards (icon, name, Learn more pill) after the first paragraph
     activities: [
-      { name: 'Snow tubing', icon: faSleigh, linkKey: 'snowTubing' },
+      { name: 'Snow tubing', icon: faLifeRing, linkKey: 'snowTubing' },
       { name: 'Hiking', icon: faPersonHiking, linkKey: 'winterHiking' },
       { name: 'Hot springs', icon: faHotTubPerson, linkKey: 'hotSprings' },
       { name: 'Bowling', icon: faBowlingBall, linkKey: 'bowling' },
-      { name: 'Spa days', icon: faSpa, linkKey: 'spas' },
+      { name: 'Spa day', icon: faSpa, linkKey: 'spas' },
     ] as Activity[],
     intro:
       'Not hitting the slopes? No problem! There are plenty of other ways to enjoy Mammoth, from snow tubing and hiking to natural hot springs to bowling, spa days, and more.',

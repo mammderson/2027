@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { trackSectionViews } from './analytics'
 import { Bears } from './components/Bears'
 import { Countdown } from './components/Countdown'
 import { ExternalLink } from './components/ExternalLink'
@@ -22,6 +24,9 @@ const lastUpdated = new Date(__LAST_UPDATED__).toLocaleDateString('en-US', {
 })
 
 export default function App() {
+  // Start watching which sections people scroll to, once the sections are on the page
+  useEffect(() => trackSectionViews(), [])
+
   return (
     <>
       <Nav />
